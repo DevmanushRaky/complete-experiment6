@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steel part of CP diagram</title>
+    <style>
+        .container {
+            margin: -15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* Update CSS for .info-box to position each point's information differently */
+        .info-box {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1;
+            display: none;
+        }
+
+        /* Update CSS for each point's information box (you can adjust these values based on your preferences) */
+        #point1-info {
+            top: 100px;
+            left: 50px;
+        }
+
+        #point2-info {
+            top: 200px;
+            left: 300px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Steel part of CP diagram</h1>
+    <div class="container">
+        <img src="images/Steelpartofcp diagram2.png" alt="Graph" usemap="#graphMap">
+        <map name="graphMap">
+            <!-- Define clickable points with coordinates and title (name) -->
+            <area alt="1" title="1" href="" coords="201,140,6" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+            <area alt="2" title="2" href="" coords="592,139,7" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+            <area alt="3" title="3" href="" coords="203,265,9" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+            <area alt="4" title="4" href="" coords="412,272,8" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+            <area alt="5" title="5" href="" coords="594,265,9" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+            <area alt="6" title="6" href="" coords="201,309,9" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+            <area alt="7" title="7" href="" coords="594,353,8" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+            <area alt="8" title="8" href="" coords="413,376,8" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+            <area alt="9" title="9" href="" coords="202,412,8" shape="circle"
+                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+        </map>
+    </div>
+
+    <!--  Showing aflter click  -->
+    <div class="info-box" onclick="hideInfo()">
+        <img id="pointImage" src="" alt="Point Image">
+        <p id="pointText"></p>
+    </div>
+
+    <script>
+        function showInfo(event, info) {
+            const infoBox = document.querySelector('.info-box');
+            const pointImage = document.getElementById('pointImage');
+            const pointText = document.getElementById('pointText');
+
+            // Extract the image URL and text from the 'info' parameter
+            const [imageUrl, text] = info.split('|');
+
+            // Set the image source and text content
+            pointImage.src = imageUrl;
+            pointText.textContent = text;
+
+            infoBox.style.top = `${event.pageY}px`;
+            infoBox.style.left = `${event.pageX}px`;
+            infoBox.style.display = 'block';
+        }
+
+        function hideInfo() {
+            const infoBox = document.querySelector('.info-box');
+            infoBox.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

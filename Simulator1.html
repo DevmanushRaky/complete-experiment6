@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron carbon phase diagram</title>
+
+    <style>
+        .container {
+            margin: -15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1;
+        }
+    </style>
+    <script>
+        function showInfo(event, areaName) {
+            const infoBox = document.querySelector('.info-box');
+            infoBox.style.top = `${event.pageY}px`;
+            infoBox.style.left = `${event.pageX}px`;
+            infoBox.innerHTML = areaName;
+            infoBox.style.display = 'block';
+        }
+
+        function hideInfo() {
+            const infoBox = document.querySelector('.info-box');
+            infoBox.style.display = 'none';
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Iron carbon phase diagram</h1>
+    <div class="container">
+        <img src="images/Ironcarbonphase diagram1.png" alt="Graph" usemap="#graphMap">
+        <map name="graphMap">
+            <!-- Define clickable points with coordinates and title (name) -->
+            <area alt="cementite and ledeburite" title="cementite and ledeburite" href="" coords="659,306,975,465"
+                shape="rect" onclick="showInfo(event, 'cementite and ledeburite'); return false;">
+            <area alt="Austenite ledeburite and cementite" title="Austenite ledeburite and cementite" href=""
+                coords="369,311,646,464" shape="rect"
+                onclick="showInfo(event, 'Austenite ledeburite and cementite'); return false;">
+            <area alt="Pearlite and Ferrite" title="Pearlite and Ferrite" href="" coords="94,469,203,600" shape="rect"
+                onclick="showInfo(event, 'Pearlite and Ferrite'); return false;">
+            <area alt="Pearlite and cementite" title="Pearlite and cementite" href="" coords="203,471,373,594"
+                shape="rect" onclick="showInfo(event, 'Pearlite and cementite'); return false;">
+            <area alt="Cementite pearlite and transformed ledeburite"
+                title="Cementite pearlite and transformed ledeburite" href="" coords="375,468,973,599" shape="rect"
+                onclick="showInfo(event, 'Cementite pearlite and transformed ledeburite'); return false;">
+        </map>
+    </div>
+    <div class="info-box" onclick="hideInfo()">
+        <!-- Content will be populated dynamically when a point is clicked -->
+    </div>
+</body>
+
+</html>
