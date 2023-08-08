@@ -78,8 +78,6 @@
             border: 2px solid green;
             /* You can change this to any other style to indicate a successful match */
         }
-
-       
     </style>
 </head>
 
@@ -153,6 +151,8 @@
                     var targetModal = $(targetArea.data("target"));
                     var targetImageSrc = targetArea.data("image");
 
+                    var incorrectMatch = true; // Assume the match is incorrect initially
+
                     if (targetArea.length > 0) {
                         var targetCoords = targetArea.attr("coords").split(",");
                         var dropX = ui.offset.left - $(this).offset().left;
@@ -163,12 +163,13 @@
                         var areaY2 = parseInt(targetCoords[3]);
 
                         if (dropX >= areaX1 && dropX <= areaX2 && dropY >= areaY1 && dropY <= areaY2) {
+                            incorrectMatch = false; // The match is correct
                             $("#matchingResult").text("Success! The dropped image matches the selected region.");
                             // targetModal.find(".modal-body").html('<img src="' + targetImageSrc + '" alt="' + droppedImage + '">');
-                        } else {
-                            $("#matchingResult").text("Try again! The dropped image does not match the selected region.");
                         }
-                    } else {
+                    }
+
+                    if (incorrectMatch) {
                         $("#matchingResult").text("Try again! The dropped image does not match the selected region.");
                     }
 
@@ -176,6 +177,7 @@
                 }
             });
         });
+
     </script>
 
 
