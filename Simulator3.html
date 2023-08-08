@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match the real microstructures</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
     <style>
+        a {
+            text-decoration: none;
+        }
+
         .container {
             max-width: 100%;
         }
@@ -73,10 +78,15 @@
             border: 2px solid green;
             /* You can change this to any other style to indicate a successful match */
         }
+
+       
     </style>
 </head>
 
 <body>
+    <button type="button" class="btn btn-outline-info  m-1"><a href="index.html"> Go to main page</a></button>
+    <p class="p-1"> You can drag microscope images onto the graph image in designated regions and then click on those
+        regions to check if they've matched correctly. </p>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -85,25 +95,28 @@
                 <map name="graphMap">
                     <!-- Adjusted coordinates for each area -->
                     <area data-target="#myModal" data-toggle="modal" data-image="images/Hypoeutectoid.png"
-                        alt="Hypoeutectoid" title="Hypoeutectoid" coords="33,134,257,667" shape="rect">
-                    <area data-target="#myModal" data-toggle="modal" data-image="images/eutectoid.png" alt="Eutectoid"
-                        title="Eutectoid" coords="272,134,507,667" shape="rect">
+                        alt="Hypoeutectoid" title="Hypoeutectoid" coords="150,235,300,490" shape="rect">
+
+                    <area data-target="#myModal" data-toggle="modal" data-image="images/Eutectoid.png" alt="Eutectoid"
+                        title="Eutectoid" coords="300,235,433,490" shape="rect">
+
                     <area data-target="#myModal" data-toggle="modal" data-image="images/Hypereutectoid.png"
-                        alt="Hypereutectoid" title="Hypereutectoid" coords="522,134,766,667" shape="rect">
+                        alt="Hypereutectoid" title="Hypereutectoid" coords="435,235,666,490" shape="rect">
                 </map>
             </div>
 
             <div class="col-md-6">
-                <h1>Microscope images</h1>
-                <div class="microscope">
-                    <img class="microscope-images droppable" src="images/Hypoeutectoid.png" alt="Hypoeutectoid"
-                        data-drop="Hypoeutectoid">
-                    <img class="microscope-images droppable" src="images/eutectoid.png" alt="Eutectoid"
-                        data-drop="Eutectoid">
-                    <img class="microscope-images droppable" src="images/Hypereutectoid.png" alt="Hypereutectoid"
-                        data-drop="Hypereutectoid">
+                <div class="m-3">
+                    <h1>Microscope images</h1>
+                    <div class="microscope">
+                        <img class="microscope-images droppable" src="images/Hypoeutectoid.png" alt="Hypoeutectoid"
+                            data-drop="Hypoeutectoid">
+                        <img class="microscope-images droppable" src="images/Eutectoid.png" alt="Eutectoid"
+                            data-drop="Eutectoid">
+                        <img class="microscope-images droppable" src="images/Hypereutectoid.png" alt="Hypereutectoid"
+                            data-drop="Hypereutectoid">
+                    </div>
                 </div>
-                <button type="button" class="btn btn-outline-success" id="checkMatchingBtn">Check Matching</button>
             </div>
         </div>
     </div>
@@ -125,56 +138,6 @@
         </div>
     </div>
 
-    <!-- <script>
-        $(document).ready(function () {
-            $(".microscope-images").draggable({
-                revert: true
-            });
-
-            var droppedImage = null; // Variable to store the last dropped image
-
-            $(".microscope-images").on('drag', function (event, ui) {
-                droppedImage = $(this); // Store the dragged microscope image
-            });
-
-            $("#checkMatchingBtn").on('click', function () {
-                if (droppedImage === null) {
-                    $("#matchingResult").text("No image dropped. Please drop an image onto the graph.");
-                    $("#myModal").modal("show");
-                    return;
-                }
-
-                var droppedImageAlt = droppedImage.attr("alt");
-                var targetArea = $("#graphImage").parent().find('area[alt="' + droppedImageAlt + '"]');
-                var targetModal = $(targetArea.data("target"));
-                var targetImageSrc = targetArea.data("image");
-
-                if (targetArea.hasClass('dropped')) {
-                    $("#matchingResult").text("This region is already matched. Please try another region.");
-                } else if (targetArea.length > 0) {
-                    var targetCoords = targetArea.attr("coords").split(",");
-                    var dropX = droppedImage.offset().left - $("#graphImage").offset().left;
-                    var dropY = droppedImage.offset().top - $("#graphImage").offset().top;
-                    var areaX1 = parseInt(targetCoords[0]);
-                    var areaY1 = parseInt(targetCoords[1]);
-                    var areaX2 = parseInt(targetCoords[2]);
-                    var areaY2 = parseInt(targetCoords[3]);
-
-                    if (dropX >= areaX1 && dropX <= areaX2 && dropY >= areaY1 && dropY <= areaY2) {
-                        targetArea.addClass('dropped');
-                        droppedImage.draggable('disable');
-                        $("#matchingResult").text("Success! The dropped image matches the selected region.");
-                    } else {
-                        $("#matchingResult").text("Try again! The dropped image does not match the selected region.");
-                    }
-                } else {
-                    $("#matchingResult").text("Try again! The dropped image does not match the selected region.");
-                }
-
-                $("#myModal").modal("show");
-            });
-        });
-    </script> -->
 
     <!-- Correct  -->
     <script>
@@ -182,14 +145,14 @@
             $(".microscope-images").draggable({
                 revert: true
             });
-    
+
             $("#graphImage").droppable({
                 drop: function (event, ui) {
                     var droppedImage = ui.draggable.attr("data-drop");
                     var targetArea = $(this).parent().find('area[alt="' + droppedImage + '"]');
                     var targetModal = $(targetArea.data("target"));
                     var targetImageSrc = targetArea.data("image");
-    
+
                     if (targetArea.length > 0) {
                         var targetCoords = targetArea.attr("coords").split(",");
                         var dropX = ui.offset.left - $(this).offset().left;
@@ -198,7 +161,7 @@
                         var areaY1 = parseInt(targetCoords[1]);
                         var areaX2 = parseInt(targetCoords[2]);
                         var areaY2 = parseInt(targetCoords[3]);
-    
+
                         if (dropX >= areaX1 && dropX <= areaX2 && dropY >= areaY1 && dropY <= areaY2) {
                             $("#matchingResult").text("Success! The dropped image matches the selected region.");
                             // targetModal.find(".modal-body").html('<img src="' + targetImageSrc + '" alt="' + droppedImage + '">');
@@ -208,7 +171,7 @@
                     } else {
                         $("#matchingResult").text("Try again! The dropped image does not match the selected region.");
                     }
-    
+
                     $("#myModal").modal("show");
                 }
             });
