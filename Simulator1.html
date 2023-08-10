@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Iron carbon phase diagram</title>
 
     <style>
-         a {
+        a {
             text-decoration: none;
         }
+
         .container {
             margin: -15px;
             display: flex;
@@ -30,12 +35,139 @@
             z-index: 1;
         }
     </style>
+
+</head>
+
+<body>
+    <button type="button" class="btn btn-outline-info  m-2"><a href="index.html"> Go to main page</a></button>
+    <h1>Iron carbon phase diagram</h1>
+    <div class="container">
+
+
+        <img src="images/Ironcarbonphase diagram1.png" alt="Graph" usemap="#graphMap">
+        <map name="graphMap">
+            <!-- Define clickable points with coordinates and title (name) -->
+            <area alt="Cementite" title="Region A" href="" coords="659,306,975,465" shape="rect"
+                onclick="showInfo(event, 'Region A'); return false;">
+
+            <area alt="Austenite" title="Region B" href="" coords="369,311,646,464" shape="rect"
+                onclick="showInfo(event, 'Region B'); return false;">
+
+            <area alt="Ferrite" title="Region C" href="" coords="94,469,203,600" shape="rect"
+                onclick="showInfo(event, 'Region C'); return false;">
+
+            <area alt="Cementite" title="Region D" href="" coords="203,471,373,594" shape="rect"
+                onclick="showInfo(event, 'Region D'); return false;">
+
+            <area alt="Cementite" title="Region E" href="" coords="375,468,973,599" shape="rect"
+                onclick="showInfo(event, 'Region E'); return false;">
+        </map>
+
+
+        <div class="info-box">
+            <div>
+                <i class="fa fa-close  d-flex justify-content-end" style="font-size:24px" onclick="hideInfo()"></i>
+                <div class="question">Which phase is represented by this region? </div>
+                <div class="options">
+                    <label>
+                        <input type="checkbox" name="option" value="Cementite"> Cementite
+                    </label>
+                    <label>
+                        <input type="checkbox" name="option" value="Austenite"> Austenite
+                    </label>
+                    <label>
+                        <input type="checkbox" name="option" value="Ferrite"> Ferrite
+                    </label>
+                </div>
+                <button onclick="checkAnswer()">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+    </div>
+
+
     <script>
-        function showInfo(event, areaName) {
+        let currentRegionIndex = 0;
+        const regions = [
+            'Region A',
+            'Region B',
+            'Region C',
+            'Region D',
+            'Region E'
+        ];
+
+        const correctAnswers = ['Cementite', 'Austenite', 'Ferrite', 'Cementite', 'Cementite'];
+
+
+        function checkAnswer() {
+            const selectedOptions = document.querySelectorAll('.options input[type="checkbox"]:checked');
+            const selectedValues = Array.from(selectedOptions).map(option => option.value.trim().toLowerCase());
+
+            if (selectedValues.length === 1 && selectedValues[0] === correctAnswers[currentRegionIndex].toLowerCase()) {
+                showFeedback(true, `Correct! You chose the right answer.`);
+
+                // Uncheck the selected options
+                selectedOptions.forEach(option => {
+                    option.checked = false;
+                });
+
+                // Move to the next region after a short delay
+                setTimeout(() => {
+                    currentRegionIndex++;
+                    if (currentRegionIndex < regions.length) {
+                        showNextRegion();
+                    } else {
+                        showCompletionMessage();
+                    }
+                }, 1000); // Delay in milliseconds
+
+
+            } else {
+                showFeedback(false, 'Incorrect answer. Please try again.');
+            }
+        }
+
+        function showNextRegion() {
             const infoBox = document.querySelector('.info-box');
+            infoBox.style.display = 'none';
+
+            // Update the question for the next region
+            const question = document.querySelector('.question');
+            question.textContent = `Which phase is represented by ${regions[currentRegionIndex]}?`;
+
+            // Show the info box again with the updated content
+            infoBox.style.display = 'block';
+
+            // Clear previous feedback
+            const feedback = document.querySelector('.feedback');
+            feedback.textContent = '';
+        }
+        function showCompletionMessage() {
+            const infoBox = document.querySelector('.info-box');
+            const question = document.querySelector('.question');
+            question.textContent = "Congratulations! You've completed the quiz.";
+            question.style.color = 'green'; // Set the color to green
+
+            // const options = document.querySelectorAll('.options input[type="checkbox"]');
+            // options.forEach(option => option.style.display = 'none');
+            infoBox.style.display = 'block';
+            
+        }
+
+
+        function showInfo(event, areaName) {
+            // Highlight the current region
+            const options = document.querySelectorAll('.options input[type="checkbox"]');
+            options.forEach(option => option.parentElement.classList.remove('highlight'));
+            options[currentRegionIndex].parentElement.classList.add('highlight');
+
+            // Show the info box and set the initial question
+            const infoBox = document.querySelector('.info-box');
+            const question = document.querySelector('.question');
+            question.textContent = `Which phase is represented by ${areaName}?`;
             infoBox.style.top = `${event.pageY}px`;
             infoBox.style.left = `${event.pageX}px`;
-            infoBox.innerHTML = areaName;
             infoBox.style.display = 'block';
         }
 
@@ -43,33 +175,17 @@
             const infoBox = document.querySelector('.info-box');
             infoBox.style.display = 'none';
         }
-    </script>
-</head>
 
-<body>
-    <button type="button" class="btn btn-outline-info  m-3"><a href="index.html"> Go to main page</a></button>
-    <h1>Iron carbon phase diagram</h1>
-    <div class="container">
-        <img src="images/Ironcarbonphase diagram1.png" alt="Graph" usemap="#graphMap">
-        <map name="graphMap">
-            <!-- Define clickable points with coordinates and title (name) -->
-            <area alt="cementite and ledeburite" title="cementite and ledeburite" href="" coords="659,306,975,465"
-                shape="rect" onclick="showInfo(event, 'cementite and ledeburite'); return false;">
-            <area alt="Austenite ledeburite and cementite" title="Austenite ledeburite and cementite" href=""
-                coords="369,311,646,464" shape="rect"
-                onclick="showInfo(event, 'Austenite ledeburite and cementite'); return false;">
-            <area alt="Pearlite and Ferrite" title="Pearlite and Ferrite" href="" coords="94,469,203,600" shape="rect"
-                onclick="showInfo(event, 'Pearlite and Ferrite'); return false;">
-            <area alt="Pearlite and cementite" title="Pearlite and cementite" href="" coords="203,471,373,594"
-                shape="rect" onclick="showInfo(event, 'Pearlite and cementite'); return false;">
-            <area alt="Cementite pearlite and transformed ledeburite"
-                title="Cementite pearlite and transformed ledeburite" href="" coords="375,468,973,599" shape="rect"
-                onclick="showInfo(event, 'Cementite pearlite and transformed ledeburite'); return false;">
-        </map>
-    </div>
-    <div class="info-box" onclick="hideInfo()">
-        <!-- Content will be populated dynamically when a point is clicked -->
-    </div>
+        function showFeedback(isCorrect, message) {
+            const feedback = document.querySelector('.feedback');
+            feedback.textContent = message;
+            feedback.style.color = isCorrect ? 'green' : 'red';
+        }
+
+
+
+    </script>
+
 </body>
 
 </html>
