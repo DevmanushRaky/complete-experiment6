@@ -24,7 +24,23 @@
             align-items: center;
         }
 
-        .info-box {
+        .region-box {
+            position: absolute;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .optioncheckbox {
+            margin: 2px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* .info-box {
             position: absolute;
             top: 0;
             left: 0;
@@ -33,61 +49,99 @@
             border: 1px solid #ccc;
             padding: 10px;
             z-index: 1;
-        }
+        } */
     </style>
 
 </head>
 
-<body>
-    <button type="button" class="btn btn-outline-info  m-2"><a href="index.html"> Go to main page</a></button>
-    <h1>Iron carbon phase diagram</h1>
+<body onload="showQuiz(event,initialArea)">
+    <button type="button" class="btn btn-outline-info  mx-2 my-2"><a href="index.html"> Go to main page</a></button>
+    <h4 class="p-2">Iron carbon phase diagram</h4>
     <div class="container">
+        <div class="row">
 
+            <div class="col-md-10">
+                <img src="images/Ironcarbonphase diagram1.png" alt="Graph" usemap="#graphMap">
+                <map name="graphMap">
+                    <!-- Define clickable points with coordinates and title (name) -->
+                    <area alt="Cementite" title="Region A" href="" coords="659,306,975,465" shape="rect"
+                        onclick="ShowRegionName(event, 'Region A'); return false;">
 
-        <img src="images/Ironcarbonphase diagram1.png" alt="Graph" usemap="#graphMap">
-        <map name="graphMap">
-            <!-- Define clickable points with coordinates and title (name) -->
-            <area alt="Cementite" title="Region A" href="" coords="659,306,975,465" shape="rect"
-                onclick="showInfo(event, 'Region A'); return false;">
+                    <area alt="Austenite" title="Region B" href="" coords="369,311,646,464" shape="rect"
+                        onclick="ShowRegionName(event, 'Region B'); return false;">
 
-            <area alt="Austenite" title="Region B" href="" coords="369,311,646,464" shape="rect"
-                onclick="showInfo(event, 'Region B'); return false;">
+                    <area alt="Ferrite" title="Region C" href="" coords="94,469,203,600" shape="rect"
+                        onclick="ShowRegionName(event, 'Region C'); return false;">
 
-            <area alt="Ferrite" title="Region C" href="" coords="94,469,203,600" shape="rect"
-                onclick="showInfo(event, 'Region C'); return false;">
+                    <area alt="Cementite" title="Region D" href="" coords="203,471,373,594" shape="rect"
+                        onclick="ShowRegionName(event, 'Region D'); return false;">
 
-            <area alt="Cementite" title="Region D" href="" coords="203,471,373,594" shape="rect"
-                onclick="showInfo(event, 'Region D'); return false;">
+                    <area alt="Cementite" title="Region E" href="" coords="375,468,973,599" shape="rect"
+                        onclick="ShowRegionName(event, 'Region E'); return false;">
+                </map>
+            </div>
 
-            <area alt="Cementite" title="Region E" href="" coords="375,468,973,599" shape="rect"
-                onclick="showInfo(event, 'Region E'); return false;">
-        </map>
-
-
-        <div class="info-box">
-            <div>
-                <i class="fa fa-close  d-flex justify-content-end" style="font-size:24px" onclick="hideInfo()"></i>
-                <div class="question">Which phase is represented by this region? </div>
-                <div class="options">
-                    <label>
-                        <input type="checkbox" name="option" value="Cementite"> Cementite
-                    </label>
-                    <label>
-                        <input type="checkbox" name="option" value="Austenite"> Austenite
-                    </label>
-                    <label>
-                        <input type="checkbox" name="option" value="Ferrite"> Ferrite
-                    </label>
+            <div class="col-md-2">
+                <div class="info-box">
+                    <div>
+                        <!-- <i class="fa fa-close  d-flex justify-content-end" style="font-size:24px"
+                            onclick="hideInfo()"></i> -->
+                        <div class="question">Which phase is represented by this region A ? </div>
+                        <div class="options">
+                            <label class="optioncheckbox">
+                                <input type="checkbox" name="option" value="Cementite"> Cementite
+                            </label>
+                            <label class="optioncheckbox">
+                                <input type="checkbox" name="option" value="Austenite"> Austenite
+                            </label>
+                            <label class="optioncheckbox">
+                                <input type="checkbox" name="option" value="Ferrite"> Ferrite
+                            </label>
+                        </div>
+                        <button onclick="checkAnswer()" type="button" class="btn btn-outline-success">Check Answer</button>
+                        <div class="feedback"></div>
+                    </div>
                 </div>
-                <button onclick="checkAnswer()">Check Answer</button>
-                <div class="feedback"></div>
             </div>
         </div>
+
+        <!-- This element will display the region name on click -->
+        <div class="region-box"></div>
 
     </div>
 
 
     <script>
+        // Hightlight region area when quiz start
+        function ShowRegionName(event, areaName) {
+            const infoBox = document.querySelector('.region-box');
+            infoBox.style.top = `${event.pageY}px`;
+            infoBox.style.left = `${event.pageX}px`;
+            infoBox.innerHTML = areaName;
+            infoBox.style.display = 'block';
+        }
+
+        // quiz
+
+
+        var initialArea = "Region A";
+        // First time show quiz question 
+        function showQuiz(event, areaName) {
+            // Highlight the current region
+            const options = document.querySelectorAll('.options input[type="checkbox"]');
+            options.forEach(option => option.parentElement.classList.remove('highlight'));
+            options[currentRegionIndex].parentElement.classList.add('highlight');
+
+            // Show the info box and set the initial question
+            const infoBox = document.querySelector('.info-box');
+            const question = document.querySelector('.question');
+            question.textContent = `Which phase is represented by ${areaName}?`;
+            infoBox.style.top = `${event.pageY}px`;
+            infoBox.style.left = `${event.pageX}px`;
+            infoBox.style.display = 'block';
+
+        }
+
         let currentRegionIndex = 0;
         const regions = [
             'Region A',
@@ -97,35 +151,65 @@
             'Region E'
         ];
 
-        const correctAnswers = ['Cementite', 'Austenite', 'Ferrite', 'Cementite', 'Cementite'];
-
+        const correctAnswers = [
+            'Cementite', // Region A
+            'Austenite', // Region B
+            'Ferrite',   // Region C
+            'Cementite', // Region D
+            ['Cementite', 'Austenite'] // Region E (multiple correct answers)
+        ];
 
         function checkAnswer() {
             const selectedOptions = document.querySelectorAll('.options input[type="checkbox"]:checked');
             const selectedValues = Array.from(selectedOptions).map(option => option.value.trim().toLowerCase());
 
-            if (selectedValues.length === 1 && selectedValues[0] === correctAnswers[currentRegionIndex].toLowerCase()) {
-                showFeedback(true, `Correct! You chose the right answer.`);
+            const correctAnswersForCurrentRegion = correctAnswers[currentRegionIndex];
 
-                // Uncheck the selected options
-                selectedOptions.forEach(option => {
-                    option.checked = false;
-                });
+            if (Array.isArray(correctAnswersForCurrentRegion)) {
+                // Region with multiple correct answers
+                const isCorrect = correctAnswersForCurrentRegion.every(answer => selectedValues.includes(answer.toLowerCase()));
 
-                // Move to the next region after a short delay
-                setTimeout(() => {
-                    currentRegionIndex++;
-                    if (currentRegionIndex < regions.length) {
-                        showNextRegion();
-                    } else {
-                        showCompletionMessage();
-                    }
-                }, 1000); // Delay in milliseconds
-
-
+                if (isCorrect) {
+                    showFeedback(true, `Correct! You chose the right answer.`);
+                    selectedOptions.forEach(option => {
+                        option.checked = false;
+                    });
+                    setTimeout(() => {
+                        currentRegionIndex++;
+                        if (currentRegionIndex < regions.length) {
+                            showNextRegion();
+                        } else {
+                            showCompletionMessage();
+                        }
+                    }, 1000); // Delay in milliseconds
+                } else {
+                    showFeedback(false, 'Incorrect answer. Please try again.');
+                }
             } else {
-                showFeedback(false, 'Incorrect answer. Please try again.');
+                // Region with single correct answer
+                if (selectedValues.length === 1 && selectedValues[0] === correctAnswersForCurrentRegion.toLowerCase()) {
+                    showFeedback(true, `Correct! You chose the right answer.`);
+                    selectedOptions.forEach(option => {
+                        option.checked = false;
+                    });
+                    setTimeout(() => {
+                        currentRegionIndex++;
+                        if (currentRegionIndex < regions.length) {
+                            showNextRegion();
+                        } else {
+                            showCompletionMessage();
+                        }
+                    }, 1000); // Delay in milliseconds
+                } else {
+                    showFeedback(false, 'Incorrect answer. Please try again.');
+                }
             }
+        }
+        // show correct or incorrect 
+        function showFeedback(isCorrect, message) {
+            const feedback = document.querySelector('.feedback');
+            feedback.textContent = message;
+            feedback.style.color = isCorrect ? 'green' : 'red';
         }
 
         function showNextRegion() {
@@ -142,46 +226,32 @@
             // Clear previous feedback
             const feedback = document.querySelector('.feedback');
             feedback.textContent = '';
+
         }
+
+
+        // When quiz completed
         function showCompletionMessage() {
             const infoBox = document.querySelector('.info-box');
-            const question = document.querySelector('.question');
-            question.textContent = "Congratulations! You've completed the quiz.";
-            question.style.color = 'green'; // Set the color to green
-
-            // const options = document.querySelectorAll('.options input[type="checkbox"]');
-            // options.forEach(option => option.style.display = 'none');
-            infoBox.style.display = 'block';
-            
-        }
-
-
-        function showInfo(event, areaName) {
-            // Highlight the current region
-            const options = document.querySelectorAll('.options input[type="checkbox"]');
-            options.forEach(option => option.parentElement.classList.remove('highlight'));
-            options[currentRegionIndex].parentElement.classList.add('highlight');
-
-            // Show the info box and set the initial question
-            const infoBox = document.querySelector('.info-box');
-            const question = document.querySelector('.question');
-            question.textContent = `Which phase is represented by ${areaName}?`;
-            infoBox.style.top = `${event.pageY}px`;
-            infoBox.style.left = `${event.pageX}px`;
-            infoBox.style.display = 'block';
-        }
-
-        function hideInfo() {
-            const infoBox = document.querySelector('.info-box');
-            infoBox.style.display = 'none';
-        }
-
-        function showFeedback(isCorrect, message) {
             const feedback = document.querySelector('.feedback');
-            feedback.textContent = message;
-            feedback.style.color = isCorrect ? 'green' : 'red';
+            feedback.textContent = "Congratulations! You've completed the quiz.";
+            feedback.style.color = 'red'; // Set the color to green
+
+            // Hide checkboxes and "Check Answer" button
+            const options = document.querySelectorAll('.options input[type="checkbox"]');
+            const checkButton = document.querySelector('.options button');
+
+            // options.forEach(option => option.style.display = 'none');
+            checkButton.style.display = 'none';
+
+            infoBox.style.display = 'block';
         }
 
+        //  For close button 
+        // function hideInfo() {
+        //     const infoBox = document.querySelector('.info-box');
+        //     infoBox.style.display = 'none';
+        // }
 
 
     </script>
