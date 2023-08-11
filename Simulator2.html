@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Steel part of CP diagram</title>
     <style>
-         a {
+        a {
             text-decoration: none;
         }
+
         .container {
             margin: -15px;
             display: flex;
@@ -20,14 +23,14 @@
 
 
         /* Update CSS for .info-box to position each point's information differently */
-        .info-box {
+        /* .info-box {
             position: absolute;
             background-color: #fff;
             border: 1px solid #ccc;
             padding: 10px;
             z-index: 1;
             display: none;
-        }
+        } */
 
         /* Update CSS for each point's information box (you can adjust these values based on your preferences) */
         #point1-info {
@@ -39,45 +42,149 @@
             top: 200px;
             left: 300px;
         }
+
+        .pointphoto {
+            width: 150px;
+            height: 150px;
+        }
+
+        .fa-close:hover {
+            color: red;
+            cursor: pointer;
+        }
     </style>
 
 </head>
 
 <body>
     <button type="button" class="btn btn-outline-info  m-3"><a href="index.html"> Go to main page</a></button>
-    <h1>Steel part of CP diagram</h1>
+    <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator1.html">Back</a></button>
+    <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator3.html">Next</a></button>
+    <h1 class="p-3">Steel part of CP diagram</h1>
     <div class="container">
-        <img src="images/Steelpartofcp diagram2.png" alt="Graph" usemap="#graphMap">
-        <map name="graphMap">
-            <!-- Define clickable points with coordinates and title (name) -->
-            <area alt="1" title="1" href="" coords="201,140,6" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-            <area alt="2" title="2" href="" coords="592,139,7" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-            <area alt="3" title="3" href="" coords="203,265,9" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-            <area alt="4" title="4" href="" coords="412,272,8" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-            <area alt="5" title="5" href="" coords="594,265,9" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-            <area alt="6" title="6" href="" coords="201,309,9" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-            <area alt="7" title="7" href="" coords="594,353,8" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-            <area alt="8" title="8" href="" coords="413,376,8" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-            <area alt="9" title="9" href="" coords="202,412,8" shape="circle"
-                onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
-        </map>
+        <div class="row">
+            <div class="col-md-10">
+
+                <img src="images/Steelpartofcp diagram2.png" alt="Graph" usemap="#graphMap">
+                <map name="graphMap">
+                    <!-- Define clickable points with coordinates and title (name) -->
+                    <area alt="1" title="1" href="" coords="201,140,6" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+                    <area alt="2" title="2" href="" coords="592,139,7" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 2: Information and Image here.'); return false;">
+                    <area alt="3" title="3" href="" coords="203,265,9" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 3: Information and Image here.'); return false;">
+                    <area alt="4" title="4" href="" coords="412,272,8" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 4: Information and Image here.'); return false;">
+                    <area alt="5" title="5" href="" coords="594,265,9" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 5: Information and Image here.'); return false;">
+                    <area alt="6" title="6" href="" coords="201,309,9" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 6: Information and Image here.'); return false;">
+                    <area alt="7" title="7" href="" coords="594,353,8" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 7: Information and Image here.'); return false;">
+                    <area alt="8" title="8" href="" coords="413,376,8" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 8: Information and Image here.'); return false;">
+                    <area alt="9" title="9" href="" coords="202,412,8" shape="circle"
+                        onclick="showInfo(event, 'images/smallimg1.png|Point 9: Information and Image here.'); return false;">
+                </map>
+            </div>
+            <div class="col-md-2">
+                <!--  Showing aflter click  -->
+                <div>
+                    <div class="info-box">
+                        <i class="fa fa-close d-flex justify-content-end" style="font-size:24px"
+                            onclick="hideInfo()"></i>
+                        <img id="pointImage" src="" alt="Click on graph point to see image" class="pointphoto">
+                        <p id="pointText"></p>
+                        <div id="quiz" style="display: none;">
+                            <p id="question"></p>
+                            <ul id="options">
+                                <li><button onclick="checkAnswer(0)">Option 1</button></li>
+                                <li><button onclick="checkAnswer(1)">Option 2</button></li>
+                                <li><button onclick="checkAnswer(2)">Option 3</button></li>
+                                <li><button onclick="checkAnswer(3)">Option 4</button></li>
+                            </ul>
+                            <p id="result"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
-    <!--  Showing aflter click  -->
-    <div class="info-box" onclick="hideInfo()">
-        <img id="pointImage" src="" alt="Point Image">
-        <p id="pointText"></p>
-    </div>
 
     <script>
+        const questions = [
+            {
+                question: "Question 1: What is the capital of France?",
+                options: ["Paris", "Berlin", "Madrid", "London"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "Question 1: What is mango?",
+                options: ["Fruit", "Berlin", "Madrid", "London"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            // Add more questions here...
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function showInfo(event, info) {
+            const infoBox = document.querySelector('.info-box');
+            const pointImage = document.getElementById('pointImage');
+            const pointText = document.getElementById('pointText');
+            const quizContainer = document.getElementById('quiz');
+            const questionElement = document.getElementById('question');
+            const optionsList = document.getElementById('options');
+            const resultElement = document.getElementById('result');
+
+            // Extract the image URL and text from the 'info' parameter
+            const [imageUrl, text] = info.split('|');
+
+            // Set the image source and text content
+            pointImage.src = imageUrl;
+            pointText.textContent = text;
+
+            // Display the quiz
+            quizContainer.style.top = `${event.pageY}px`;
+            quizContainer.style.left = `${event.pageX}px`;
+            quizContainer.style.display = 'block';
+
+            // Display the current question
+            questionElement.textContent = questions[currentQuestionIndex].question;
+
+            // Display the options
+            optionsList.innerHTML = questions[currentQuestionIndex].options.map((option, index) => {
+                return `<li><button onclick="checkAnswer(${index})">${option}</button></li>`;
+            }).join('');
+
+            // Clear previous result
+            resultElement.textContent = '';
+        }
+
+        function checkAnswer(selectedIndex) {
+            const resultElement = document.getElementById('result');
+            const correctIndex = questions[currentQuestionIndex].correctIndex;
+
+            if (selectedIndex === correctIndex) {
+                resultElement.textContent = questions[currentQuestionIndex].feedback;
+            } else {
+                resultElement.textContent = "Incorrect. Please try again.";
+            }
+        }
+
+        function hideInfo() {
+            const infoBox = document.querySelector('.info-box');
+            infoBox.style.display = 'none';
+        }
+    </script>
+
+    <!-- <script>
         function showInfo(event, info) {
             const infoBox = document.querySelector('.info-box');
             const pointImage = document.getElementById('pointImage');
@@ -99,7 +206,7 @@
             const infoBox = document.querySelector('.info-box');
             infoBox.style.display = 'none';
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
