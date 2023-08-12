@@ -52,6 +52,44 @@
             color: red;
             cursor: pointer;
         }
+
+        #options {
+            list-style: none;
+            /* Remove bullets */
+            padding: 0;
+            /* Remove default padding */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* Two columns */
+            gap: 10px;
+            /* Spacing between buttons */
+        }
+
+        #options li {
+            margin: 0;
+        }
+
+        #options li button {
+            display: block;
+            padding: 10px 20px;
+            background-color: white;
+            color: #0dcaf0;
+            border: #0dcaf0 1px solid;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        #options li button:hover {
+            background-color: #0dcaf0;
+            color: #0d6efd;
+        }
+
+        #options li button:active {
+            background-color: #0dcaf0;
+            transform: translateY(2px);
+        }
     </style>
 
 </head>
@@ -69,31 +107,38 @@
                 <map name="graphMap">
                     <!-- Define clickable points with coordinates and title (name) -->
                     <area alt="1" title="1" href="" coords="201,140,6" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 1: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '0'); return false;">
+
                     <area alt="2" title="2" href="" coords="592,139,7" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 2: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '1'); return false;">
+
                     <area alt="3" title="3" href="" coords="203,265,9" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 3: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '2'); return false;">
+
                     <area alt="4" title="4" href="" coords="412,272,8" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 4: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '3'); return false;">
+
                     <area alt="5" title="5" href="" coords="594,265,9" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 5: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '4'); return false;">
+
                     <area alt="6" title="6" href="" coords="201,309,9" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 6: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '5'); return false;">
+
                     <area alt="7" title="7" href="" coords="594,353,8" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 7: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '6'); return false;">
+
                     <area alt="8" title="8" href="" coords="413,376,8" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 8: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '7'); return false;">
+
                     <area alt="9" title="9" href="" coords="202,412,8" shape="circle"
-                        onclick="showInfo(event, 'images/smallimg1.png|Point 9: Information and Image here.'); return false;">
+                        onclick="showInfo(event, '8'); return false;">
                 </map>
             </div>
             <div class="col-md-2">
                 <!--  Showing aflter click  -->
                 <div>
+                    <!-- <i class="fa fa-close d-flex justify-content-end" style="font-size:24px"onclick="hideInfo()"></i> -->
                     <div class="info-box">
-                        <i class="fa fa-close d-flex justify-content-end" style="font-size:24px"
-                            onclick="hideInfo()"></i>
                         <img id="pointImage" src="" alt="Click on graph point to see image" class="pointphoto">
                         <p id="pointText"></p>
                         <div id="quiz" style="display: none;">
@@ -107,6 +152,7 @@
                             <p id="result"></p>
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -116,25 +162,117 @@
 
 
     <script>
+        const points = [
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 1",
+                questionIndex: 1
+            },
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 2",
+                questionIndex: 2
+            },
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 3",
+                questionIndex: 3
+            },
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 4",
+                questionIndex: 4
+            },
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 5",
+                questionIndex: 5
+            },
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 6",
+                questionIndex: 6
+            },
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 7",
+                questionIndex: 7
+            },
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 8",
+                questionIndex: 8
+            },
+            {
+                imageUrl: "images/smallimg1.png",
+                text: "Description for point 9",
+                questionIndex: 9
+            }
+            // Add more points here...
+        ];
+
         const questions = [
             {
-                question: "Question 1: What is the capital of France?",
-                options: ["Paris", "Berlin", "Madrid", "London"],
+                question: "What is the region of this point 1?",
+                options: ["region1", "region2", "region3", "region4"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "Question 1: What is mango?",
-                options: ["Fruit", "Berlin", "Madrid", "London"],
+                question: "What is the region of this point 2?",
+                options: ["region1", "region2", "region3", "region4"],
+                correctIndex: 1,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the region of this point 3?",
+                options: ["region1", "region2", "region3", "region4"],
+                correctIndex: 2,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the region of this point 4?",
+                options: ["region1", "region2", "region3", "region4"],
+                correctIndex: 3,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the region of this point 5?",
+                options: ["region1", "region2", "region3", "region4"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the region of this point 6?",
+                options: ["region1", "region2", "region3", "region4"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the region of this point 7?",
+                options: ["region1", "region2", "region3", "region4"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the region of this point 8?",
+                options: ["region1", "region2", "region3", "region4"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the region of this point 9?",
+                options: ["region1", "region2", "region3", "region4"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             // Add more questions here...
         ];
 
-        let currentQuestionIndex = 0;
+        let currentQuestionIndex = 1;
 
-        function showInfo(event, info) {
+        function showInfo(event, pointIndex) {
+            console.log("showInfo function called with info:", pointIndex);
             const infoBox = document.querySelector('.info-box');
             const pointImage = document.getElementById('pointImage');
             const pointText = document.getElementById('pointText');
@@ -143,23 +281,24 @@
             const optionsList = document.getElementById('options');
             const resultElement = document.getElementById('result');
 
-            // Extract the image URL and text from the 'info' parameter
-            const [imageUrl, text] = info.split('|');
+            // Get the selected point
+            const selectedPoint = points[pointIndex];
 
             // Set the image source and text content
-            pointImage.src = imageUrl;
-            pointText.textContent = text;
+            pointImage.src = selectedPoint.imageUrl;
+            pointText.textContent = selectedPoint.text;
 
             // Display the quiz
             quizContainer.style.top = `${event.pageY}px`;
             quizContainer.style.left = `${event.pageX}px`;
             quizContainer.style.display = 'block';
 
-            // Display the current question
-            questionElement.textContent = questions[currentQuestionIndex].question;
+            // Display the current question based on the selected point
+            const questionIndex = pointIndex; // Use pointIndex as the question index
+            questionElement.textContent = questions[questionIndex].question;
 
             // Display the options
-            optionsList.innerHTML = questions[currentQuestionIndex].options.map((option, index) => {
+            optionsList.innerHTML = questions[questionIndex].options.map((option, index) => {
                 return `<li><button onclick="checkAnswer(${index})">${option}</button></li>`;
             }).join('');
 
@@ -167,14 +306,18 @@
             resultElement.textContent = '';
         }
 
+
+
         function checkAnswer(selectedIndex) {
             const resultElement = document.getElementById('result');
             const correctIndex = questions[currentQuestionIndex].correctIndex;
 
             if (selectedIndex === correctIndex) {
                 resultElement.textContent = questions[currentQuestionIndex].feedback;
+                resultElement.style.color = 'green'; // Set text color to green for correct answer
             } else {
                 resultElement.textContent = "Incorrect. Please try again.";
+                resultElement.style.color = 'red'; // Set text color to red for incorrect answer
             }
         }
 
