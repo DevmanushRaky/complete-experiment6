@@ -26,11 +26,14 @@
 
         .region-box {
             position: absolute;
-            display: none;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
+            display: block;
+            /* background-color: rgba(13, 240, 70, 0.8); */
+            /* Adjust the color as needed */
+            color: rgb(214, 26, 26);
+            /* border: 1px solid red; */
             padding: 5px;
             border-radius: 5px;
+            font-size: 14px;
         }
 
         .optioncheckbox {
@@ -63,9 +66,43 @@
         <div class="row">
 
             <div class="col-md-10">
-                <img src="images/Ironcarbonphase diagram1.png" alt="Graph" usemap="#graphMap">
+
+                <img id="imageMap" src="images/Steel part of cp diagram simulator1 img.png" border="0" width="1024"
+                    height="768"  usemap="#image-maps-2023-08-16-120336" alt="" />
+
+                <map name="image-maps-2023-08-16-120336" id="ImageMapsCom-image-maps-2023-08-16-120336">
+
+                    <area alt="Cementite" title="Region C" href="" shape="poly" coords="416,663,412,327,807,3,827,663"
+                        style="outline:none;" target="_self"
+                        onclick="highlightRegion('Region C', [416,663,412,327,807,3,827,663]); return false;" />
+
+                    <area alt="Ferrite" title="Region B" href="" shape="poly" coords="407,334,413,663,135,661,156,336"
+                        style="outline:none;" target="_self"
+                        onclick="highlightRegion('Region B', [407,334,413,663,135,661,156,336]); return false;" />
+
+                    <area alt="Only Ferrite" title="Region A" href="" shape="poly"
+                        coords="117,135,120,664,129,662,148,326" style="outline:none;" target="_self"
+                        onclick="highlightRegion('Region A', [117,135,120,664,129,662,148,326]); return false;" />
+
+
+                    <area alt="Ferrite + Austenite" title="Region D" href="" shape="poly"
+                        coords="118,118,153,325,403,325,356,318,305,304,265,282,226,265,202,249,176,225,158,196,141,170"
+                        style="outline:none;" target="_self"
+                        onclick="highlightRegion('Region D', [118,118,153,325,403,325,356,318,305,304,265,282,226,265,202,249,176,225,158,196,141,170]); return false;" />
+
+                    <area alt="Austenite + Cementite" title="Region E" href="" shape="poly"
+                        coords="116,78,120,115,138,166,160,206,203,246,257,279,334,307,384,321,413,323,444,296,588,174,645,127,668,106,692,90"
+                        style="outline:none;" target="_self"
+                        onclick="highlightRegion('Region E', [116,78,120,115,138,166,160,206,203,246,257,279,334,307,384,321,413,323,444,296,588,174,645,127,668,106,692,90]); return false;" />
+
+                </map>
+
+
+
+
+                <!-- <img src="images/Steel part of cp diagram simulator1 img.png" alt="Graph" usemap="#graphMap">
                 <map name="graphMap">
-                    <!-- Define clickable points with coordinates and title (name) -->
+                
                     <area alt="Cementite" title="Region A" href="" coords="659,306,975,465" shape="rect"
                         onclick="ShowRegionName(event, 'Region A'); return false;">
 
@@ -80,11 +117,19 @@
 
                     <area alt="Cementite" title="Region E" href="" coords="375,468,973,599" shape="rect"
                         onclick="ShowRegionName(event, 'Region E'); return false;">
-                </map>
+                </map> -->
             </div>
 
             <div class="col-md-2">
-                <div class="info-box">
+                <!-- This element will display the region name on click -->
+                <div>
+                    <p class="my-1"> Here Region Name will be shown</p>
+                    <span class="region-box"> </span>
+                    
+
+                </div>
+
+                <div class="info-box my-5">
                     <div>
                         <!-- <i class="fa fa-close  d-flex justify-content-end" style="font-size:24px"
                             onclick="hideInfo()"></i> -->
@@ -104,17 +149,41 @@
                         <div class="feedback"></div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
-        <!-- This element will display the region name on click -->
-        <div class="region-box"></div>
 
     </div>
 
 
     <script>
-        // Hightlight region area when quiz start
+
+
+        // highlight region with color
+        function highlightRegion(regionName, coords) {
+            const imageMap = document.getElementById('imageMap');
+            const areas = imageMap.getElementsByTagName('area');
+
+            // Remove outline from all areas
+            for (let i = 0; i < areas.length; i++) {
+                areas[i].style.outline = 'none';
+            }
+
+            // Apply outline to the clicked area
+            const clickedArea = document.querySelector('area[title="' + regionName + '"]');
+            clickedArea.style.outline = '3px solid #FFFF00'; // You can adjust the color and width as needed
+
+            // Optionally, scroll to the clicked area
+            imageMap.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+            ShowRegionName("", regionName);
+        }
+
+
+
+
+        // Hightlight region name area when quiz start
         function ShowRegionName(event, areaName) {
             const infoBox = document.querySelector('.region-box');
             infoBox.style.top = `${event.pageY}px`;
@@ -141,6 +210,7 @@
             infoBox.style.top = `${event.pageY}px`;
             infoBox.style.left = `${event.pageX}px`;
             infoBox.style.display = 'block';
+         
 
         }
 
