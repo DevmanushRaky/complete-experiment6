@@ -46,8 +46,8 @@
         }
 
         .microscope-images {
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             border: 1px solid #11d161;
             /* Optional: Add border to images */
             margin: 5px;
@@ -59,7 +59,13 @@
         }
 
         .microscope-images.droppable:hover {
-            border-color: #f1e21a;
+            border: 3px solid #f1e21a;
+            transform: scale(1.1);
+            /* Increase the scale to make it bigger */
+            transition: transform 0.3s;
+            /* Add a smooth transition effect */
+            width: 205px;
+            height: 205px;
         }
 
         .microscope-images.droppable:active {
@@ -72,7 +78,8 @@
     <button type="button" class="btn btn-outline-info  m-1"><a href="index.html"> Go to main page</a></button>
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator2.html">Back</a></button>
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator4.html">Next</a></button>
-    <p class="p-1"> First click on region for select region and choose correct images which belongs to region   </p>
+    <p class="d-flex justify-content-center align-items-center"> First click on region for select region and choose
+        correct images which belongs to region </p>
 
     <div class="container">
         <div class="row">
@@ -83,17 +90,17 @@
                     height="768" usemap="#image-maps-2023-08-17-102103" alt="" />
                 <map name="image-maps-2023-08-17-102103" id="ImageMapsCom-image-maps-2023-08-17-102103">
 
-                    <area alt="Hypoeutectoid" title="Region A" href="" shape="rect" coords="200,329,415,665"
+                    <area alt="Hypoeutectoid" title="Region A" href="" shape="rect" coords="188,411,212,431"
                         style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region A', [200,329,415,665]); return false;" />
+                        onclick="highlightRegion('Region A', [188,411,212,431]); return false;" />
 
-                    <area alt="Eutectoid" title="Region B" href="" shape="rect" coords="415,328,592,664"
+                    <area alt="Eutectoid" title="Region B" href="" shape="rect" coords="404,376,422,396"
                         style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region B', [415,328,592,664]); return false;" />
+                        onclick="highlightRegion('Region B', [404,376,422,396]); return false;" />
 
-                    <area alt="Hypereutectoid" title="Region C" href="" shape="rect" coords="595,330,901,666"
+                    <area alt="Hypereutectoid" title="Region C" href="" shape="rect" coords="581,347,606,367"
                         style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region C', [595,330,901,666]); return false;" />
+                        onclick="highlightRegion('Region C', [581,347,606,367]); return false;" />
                 </map>
 
             </div>
@@ -132,7 +139,7 @@
     </div>
 
     <script>
-         const modal = new bootstrap.Modal(document.getElementById('myModal'));  // modal 
+        const modal = new bootstrap.Modal(document.getElementById('myModal'));  // modal 
         let selectedRegion = null; // Store the selected region for matching
 
         // Function to highlight the selected region
@@ -168,7 +175,7 @@
             selectedRegion.style.outline = 'none';
             selectedRegion = null;
 
-          
+
         }
     </script>
 
