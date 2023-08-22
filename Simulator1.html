@@ -16,43 +16,45 @@
         a {
             text-decoration: none;
         }
-
         .container {
-            margin: -15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
+            max-width: 100%;
         }
-
-        .region-box {
+        .svg-container {
             position: absolute;
-            display: block;
-            /* background-color: rgba(13, 240, 70, 0.8); */
-            /* Adjust the color as needed */
-            color: rgb(214, 26, 26);
-            /* border: 1px solid red; */
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 14px;
+            top: 0;
+            left: -237px;
+            ;
+            width: 100%;
+            height: 100%;
         }
-
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+        polygon {
+            fill: transparent;
+            /* for add border uncomment below line */
+            /* stroke: black;   */
+            stroke-width: 2;
+            transition: fill 0.3s;
+        }
+        polygon:hover {
+            fill: rgba(255, 255, 0, 0.242);
+            stroke: rgba(255, 255, 0, 0.351);
+        }
+        /* Add a new class to highlight the selected region */
+        .highlighted {
+            fill: rgba(153, 153, 150, 0.492);
+            stroke: rgba(184, 184, 180, 0.463);
+            transition: fill 0.3s, stroke 0.3s;
+        }
         .optioncheckbox {
             margin: 2px;
             display: flex;
             justify-content: flex-start;
             align-items: center;
         }
-
-        /* .info-box {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: none;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 10px;
-            z-index: 1;
-        } */
     </style>
 
 </head>
@@ -64,144 +66,107 @@
     <h4 class="p-2">Iron carbon phase diagram</h4>
     <div class="container">
         <div class="row">
-
             <div class="col-md-10">
 
                 <img id="imageMap" src="images/Steel part of cp diagram simulator1 img.png" border="0" width="1024"
-                    height="768"  usemap="#image-maps-2023-08-16-120336" alt="" />
+                    height="768" usemap="#image-maps-2023-08-16-120336" alt="" />
 
-                <map name="image-maps-2023-08-16-120336" id="ImageMapsCom-image-maps-2023-08-16-120336">
+                <div class="svg-container">
+                    <svg id="imageMapSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
 
-                    <area alt="Cementite" title="Region C" href="" shape="poly" coords="416,663,412,327,807,3,827,663"
-                        style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region C', [416,663,412,327,807,3,827,663]); return false;" />
+                        <!-- Region F -->
+                        <polygon id="polygon-6"  points="805,4 806,322 420,324" /> 
 
-                    <area alt="Ferrite" title="Region B" href="" shape="poly" coords="407,334,413,663,135,661,156,336"
-                        style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region B', [407,334,413,663,135,661,156,336]); return false;" />
+                        <!-- Region C -->
+                        <polygon id="polygon-3" points="416,332 417,662 908,670 901,332" />
 
-                    <area alt="Only Ferrite" title="Region A" href="" shape="poly"
-                        coords="117,135,120,664,129,662,148,326" style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region A', [117,135,120,664,129,662,148,326]); return false;" />
+                        <!-- Region B -->
+                        <polygon id="polygon-2"  points="407,334 413,663 135,661 156,336" />
 
+                        <!-- Region A -->
+                        <polygon id="polygon-1"  points="117,135 120,664 129,662 148,326" />
 
-                    <area alt="Ferrite + Austenite" title="Region D" href="" shape="poly"
-                        coords="118,118,153,325,403,325,356,318,305,304,265,282,226,265,202,249,176,225,158,196,141,170"
-                        style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region D', [118,118,153,325,403,325,356,318,305,304,265,282,226,265,202,249,176,225,158,196,141,170]); return false;" />
+                        <!-- Region D -->
+                        <polygon id="polygon-4"  points="118,118 153,325 403,325 356,318 305,304 265,282 226,265 202,249 176,225 158,196 141,170" />
 
-                    <area alt="Austenite + Cementite" title="Region E" href="" shape="poly"
-                        coords="116,78,120,115,138,166,160,206,203,246,257,279,334,307,384,321,413,323,444,296,588,174,645,127,668,106,692,90"
-                        style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region E', [116,78,120,115,138,166,160,206,203,246,257,279,334,307,384,321,413,323,444,296,588,174,645,127,668,106,692,90]); return false;" />
-
-                </map>
-
-
-
-
-                <!-- <img src="images/Steel part of cp diagram simulator1 img.png" alt="Graph" usemap="#graphMap">
-                <map name="graphMap">
-                
-                    <area alt="Cementite" title="Region A" href="" coords="659,306,975,465" shape="rect"
-                        onclick="ShowRegionName(event, 'Region A'); return false;">
-
-                    <area alt="Austenite" title="Region B" href="" coords="369,311,646,464" shape="rect"
-                        onclick="ShowRegionName(event, 'Region B'); return false;">
-
-                    <area alt="Ferrite" title="Region C" href="" coords="94,469,203,600" shape="rect"
-                        onclick="ShowRegionName(event, 'Region C'); return false;">
-
-                    <area alt="Cementite" title="Region D" href="" coords="203,471,373,594" shape="rect"
-                        onclick="ShowRegionName(event, 'Region D'); return false;">
-
-                    <area alt="Cementite" title="Region E" href="" coords="375,468,973,599" shape="rect"
-                        onclick="ShowRegionName(event, 'Region E'); return false;">
-                </map> -->
+                        <!-- Region E -->
+                        <polygon id="polygon-5"  points="116,78 120,115 138,166 160,206 203,246 257,279 334,307 384,321 413,323 444,296 588,174 645,127 668,106 692,90" />
+                    </svg>
+                </div>
             </div>
 
             <div class="col-md-2">
-                <!-- This element will display the region name on click -->
-                <div>
-                    <p class="my-1"> Here Region Name will be shown</p>
-                    <span class="region-box"> </span>
-                    
-
-                </div>
-
-                <div class="info-box my-5">
-                    <div>
-                        <!-- <i class="fa fa-close  d-flex justify-content-end" style="font-size:24px"
-                            onclick="hideInfo()"></i> -->
-                        <div class="question">Which phase is represented by this region ? </div>
-                        <div class="options">
-                            <label class="optioncheckbox">
-                                <input type="checkbox" name="option" value="Cementite"> Cementite
-                            </label>
-                            <label class="optioncheckbox">
-                                <input type="checkbox" name="option" value="Austenite"> Austenite
-                            </label>
-                            <label class="optioncheckbox">
-                                <input type="checkbox" name="option" value="Ferrite"> Ferrite
-                            </label>
-                        </div>
-                        <button onclick="checkAnswer()" type="button" class="btn btn-outline-info">Check Answer</button>
-                        <div class="feedback"></div>
+                <div class="info-box">
+                    <div class="question">Which phase is represented by this region ? </div>
+                    <div class="options">
+                        <label class="optioncheckbox">
+                            <input type="checkbox" name="option" value="OnlyFerrite"> Only Ferrite
+                        </label>
+                        <label class="optioncheckbox">
+                            <input type="checkbox" name="option" value="FerriteCementite"> Ferrite and Cementite
+                        </label>
+                        <label class="optioncheckbox">
+                            <input type="checkbox" name="option" value="FerriteAustenite"> Ferrite and Austenite
+                        </label>
+                        <label class="optioncheckbox">
+                            <input type="checkbox" name="option" value="OnlyAustenite"> Only Austenite
+                        </label>
+                        <label class="optioncheckbox">
+                            <input type="checkbox" name="option" value="AusteniteCementite"> Austenite and Cementite
+                        </label>
                     </div>
+                    <button onclick="checkAnswer()" type="button" class="btn btn-outline-info">Check Answer</button>
+                    <div class="feedback"></div>
                 </div>
-
-
             </div>
+
         </div>
-
-
     </div>
 
 
     <script>
+        var initialArea = "Region A";
+        let currentRegionIndex = 0;
+        const regions = [
+            'Region A',
+            'Region B',
+            'Region C',
+            'Region D',
+            'Region E',
+            'Region F'
+        ];
+
+        const correctAnswers = [
+            'OnlyFerrite', // Region A
+            'FerriteCementite', // Region B
+            'FerriteCementite', // Region c
+            'FerriteAustenite',   // Region D
+            'OnlyAustenite', // Region E
+            'AusteniteCementite', // Region F
+            ['Cementite', 'Austenite'] // NO Region (multiple correct answers)
+        ];
 
 
-        // highlight region with color
-        function highlightRegion(regionName, coords) {
-            const imageMap = document.getElementById('imageMap');
-            const areas = imageMap.getElementsByTagName('area');
 
-            // Remove outline from all areas
-            for (let i = 0; i < areas.length; i++) {
-                areas[i].style.outline = 'none';
+        // quiz code below
+
+        //  Startng quiz only for region a 
+        function showQuiz(event, areaName) {
+            // Remove the highlight from the previously selected region
+            if (currentRegionIndex >= 0) {
+                const previousHighlightedPolygon = document.getElementById(`polygon-${currentRegionIndex + 1}`);
+                previousHighlightedPolygon.classList.remove('highlighted');
             }
 
-            // Apply outline to the clicked area
-            const clickedArea = document.querySelector('area[title="' + regionName + '"]');
-            clickedArea.style.outline = '3px solid #FFFF00'; // You can adjust the color and width as needed
+            // Find the index of the clicked region
+            const clickedRegionIndex = regions.findIndex(region => region === areaName);
+            currentRegionIndex = clickedRegionIndex;
+            console.log(" starting currentRegionIndex", currentRegionIndex)
 
-            // Optionally, scroll to the clicked area
-            imageMap.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-            ShowRegionName("", regionName);
-        }
-
-
-
-
-        // Hightlight region name area when quiz start
-        function ShowRegionName(event, areaName) {
-            const infoBox = document.querySelector('.region-box');
-            infoBox.style.top = `${event.pageY}px`;
-            infoBox.style.left = `${event.pageX}px`;
-            infoBox.innerHTML = areaName;
-            infoBox.style.display = 'block';
-        }
-
-        // quiz
-
-
-        var initialArea = "Region A";
-        // First time show quiz question 
-        function showQuiz(event, areaName) {
-            // Highlight the current region
-            const options = document.querySelectorAll('.options input[type="checkbox"]');
-            options.forEach(option => option.parentElement.classList.remove('highlight'));
-            options[currentRegionIndex].parentElement.classList.add('highlight');
+            // Highlight the corresponding SVG region
+            const highlightedPolygon = document.getElementById(`polygon-${currentRegionIndex + 1}`);
+            highlightedPolygon.classList.add('highlighted');
+            console.log(" after adding highlighting currentRegionIndex", currentRegionIndex)
 
             // Show the info box and set the initial question
             const infoBox = document.querySelector('.info-box');
@@ -210,26 +175,7 @@
             infoBox.style.top = `${event.pageY}px`;
             infoBox.style.left = `${event.pageX}px`;
             infoBox.style.display = 'block';
-         
-
         }
-
-        let currentRegionIndex = 0;
-        const regions = [
-            'Region A',
-            'Region B',
-            'Region C',
-            'Region D',
-            'Region E'
-        ];
-
-        const correctAnswers = [
-            'Cementite', // Region A
-            'Austenite', // Region B
-            'Ferrite',   // Region C
-            'Cementite', // Region D
-            ['Cementite', 'Austenite'] // Region E (multiple correct answers)
-        ];
 
         function checkAnswer() {
             const selectedOptions = document.querySelectorAll('.options input[type="checkbox"]:checked');
@@ -277,6 +223,8 @@
                 }
             }
         }
+
+
         // show correct or incorrect 
         function showFeedback(isCorrect, message) {
             const feedback = document.querySelector('.feedback');
@@ -284,13 +232,27 @@
             feedback.style.color = isCorrect ? 'green' : 'red';
         }
 
+        //  showNextRegion function for showing next region quiz 
         function showNextRegion() {
+            console.log(" calling next region currentRegionIndex", currentRegionIndex);
             const infoBox = document.querySelector('.info-box');
             infoBox.style.display = 'none';
+
+            // Remove the highlight from all polygons
+            const highlightedPolygons = document.querySelectorAll('.highlighted');
+            highlightedPolygons.forEach(polygon => {
+                polygon.classList.remove('highlighted');
+            });
+
+            // Highlight the corresponding SVG region for the next question
+            const highlightedPolygon = document.getElementById(`polygon-${currentRegionIndex + 1}`);
+            highlightedPolygon.classList.add('highlighted');
+            console.log(" add region color currentRegionIndex", currentRegionIndex);
 
             // Update the question for the next region
             const question = document.querySelector('.question');
             question.textContent = `Which phase is represented by ${regions[currentRegionIndex]}?`;
+            console.log(" region ka curent region index shownext quiz", regions[currentRegionIndex + 1]);
 
             // Show the info box again with the updated content
             infoBox.style.display = 'block';
@@ -298,7 +260,6 @@
             // Clear previous feedback
             const feedback = document.querySelector('.feedback');
             feedback.textContent = '';
-
         }
 
 
@@ -317,14 +278,12 @@
             checkButton.style.display = 'none';
 
             infoBox.style.display = 'block';
+
+            // Reload the page after a delay of 3 seconds (3000 milliseconds)
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
         }
-
-        //  For close button 
-        // function hideInfo() {
-        //     const infoBox = document.querySelector('.info-box');
-        //     infoBox.style.display = 'none';
-        // }
-
 
     </script>
 
