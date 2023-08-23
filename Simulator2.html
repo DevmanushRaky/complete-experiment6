@@ -59,7 +59,7 @@
             padding: 0;
             /* Remove default padding */
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(1, 1fr);
             /* Two columns */
             gap: 10px;
             /* Spacing between buttons */
@@ -165,47 +165,47 @@
         const points = [
             {
                 imageUrl: "images/point1andpoint4.png",
-                text: "Description for point 1",
+                text: "Please select correct option .",
                 questionIndex: 1
             },
             {
                 imageUrl: "images/point2.png",
-                text: "Description for point 2",
+                text: "Please select correct option .",
                 questionIndex: 2
             },
             {
                 imageUrl: "images/point3.png",
-                text: "Description for point 3",
+                text: "Please select correct option .",
                 questionIndex: 3
             },
             {
                 imageUrl: "images/point1andpoint4.png",
-                text: "Description for point 4",
+                text: "Please select correct option .",
                 questionIndex: 4
             },
             {
                 imageUrl: "images/point5.png",
-                text: "Description for point 5",
+                text: "Please select correct option .",
                 questionIndex: 5
             },
             {
                 imageUrl: "images/point6.png",
-                text: "Description for point 6",
+                text: "Please select correct option .",
                 questionIndex: 6
             },
             {
                 imageUrl: "images/point7.png",
-                text: "Description for point 7",
+                text: "Please select correct option .",
                 questionIndex: 7
             },
             {
                 imageUrl: "images/point8.png",
-                text: "Description for point 8",
+                text: "Please select correct option .",
                 questionIndex: 8
             },
             {
                 imageUrl: "images/point9.png",
-                text: "Description for point 9",
+                text: "Please select correct option .",
                 questionIndex: 9
             }
             // Add more points here...
@@ -214,14 +214,14 @@
         const questions = [
             {
                 question: "What is the region of this point 1?",
-                options: ["region1", "region2", "region3", "region4"],
+                options: ["Austenite", "Austenite and Ferrite", "Pearlite", "Cementite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
                 question: "What is the region of this point 2?",
-                options: ["region1", "region2", "region3", "region4"],
-                correctIndex: 1,
+                options: ["Austenite", "Ferrite", "Perrlite", "Ferrite and Cementite"],
+                correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
@@ -232,19 +232,19 @@
             },
             {
                 question: "What is the region of this point 4?",
-                options: ["region1", "region2", "region3", "region4"],
-                correctIndex: 3,
+                options: ["Austenite", "Ferrite", "Pearlite ", "Cementite"],
+                correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
                 question: "What is the region of this point 5?",
-                options: ["region1", "region2", "region3", "region4"],
+                options: ["Cementite and Austenite", "Austenite and Pearlite ", "Pearlite ", "Ferrite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
                 question: "What is the region of this point 6?",
-                options: ["region1", "region2", "region3", "region4"],
+                options: ["Ferrite and Austenite", "Pearlite ", "Cementite", "Cementite and Pearlite "],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
@@ -256,13 +256,13 @@
             },
             {
                 question: "What is the region of this point 8?",
-                options: ["region1", "region2", "region3", "region4"],
+                options: ["Cementite and Ferrite", "Pearlite and Ferrite", "Austenite", "Austenite and Ferrite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
                 question: "What is the region of this point 9?",
-                options: ["region1", "region2", "region3", "region4"],
+                options: ["Ferrite and Cementite", "Austenite", "Pearlite ", "Pearlite and Ferrite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
