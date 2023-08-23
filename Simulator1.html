@@ -111,26 +111,49 @@
             <div class="col-md-2 col-sm-12">
                 <div class="info-box">
                     <div class="question">Which phase is represented by this region ? </div>
-                    <div class="options">
-                        <label class="optioncheckbox">
-                            <input type="checkbox" name="option" value="OnlyFerrite"> Only Ferrite
-                        </label>
-                        <label class="optioncheckbox">
-                            <input type="checkbox" name="option" value="FerritePerlite"> Ferrite and Perlite
-                        </label>
-                        <label class="optioncheckbox">
-                            <input type="checkbox" name="option" value="PearliteCementite"> Pearlite and Cementite
-                        </label>
-                        <label class="optioncheckbox">
-                            <input type="checkbox" name="option" value="FerriteAustenite"> Ferrite and Austenite
-                        </label>
-                        <label class="optioncheckbox">
-                            <input type="checkbox" name="option" value="OnlyAustenite"> Only Austenite
-                        </label>
-                        <label class="optioncheckbox">
-                            <input type="checkbox" name="option" value="AusteniteCementite"> Austenite and Cementite
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="option" value="OnlyFerrite"
+                            id="OnlyFerrite">
+                        <label class="form-check-label" for="OnlyFerrite">
+                            Only Ferrite
                         </label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="option" value="FerritePerlite"
+                            id="FerritePerlite">
+                        <label class="form-check-label" for="FerritePerlite">
+                            Ferrite and Perlite
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="option" value="PearliteCementite"
+                            id="PearliteCementite">
+                        <label class="form-check-label" for="PearliteCementite">
+                            Pearlite and Cementite
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="option" value="FerriteAustenite"
+                            id="FerriteAustenite">
+                        <label class="form-check-label" for="FerriteAustenite">
+                            Ferrite and Austenite
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="option" value="OnlyAustenite"
+                            id="OnlyAustenite">
+                        <label class="form-check-label" for="OnlyAustenite">
+                            Only Austenite
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="option" value="AusteniteCementite"
+                            id="AusteniteCementite">
+                        <label class="form-check-label" for="AusteniteCementite">
+                            Austenite and Cementite
+                        </label>
+                    </div>
+
                     <button onclick="checkAnswer()" type="button" class="btn btn-outline-info">Check Answer</button>
                     <div class="feedback"></div>
                 </div>
@@ -194,7 +217,7 @@
         }
 
         function checkAnswer() {
-            const selectedOptions = document.querySelectorAll('.options input[type="checkbox"]:checked');
+            const selectedOptions = document.querySelectorAll('.form-check input[type="checkbox"]:checked');
             const selectedValues = Array.from(selectedOptions).map(option => option.value.trim().toLowerCase());
 
             const correctAnswersForCurrentRegion = correctAnswers[currentRegionIndex];
