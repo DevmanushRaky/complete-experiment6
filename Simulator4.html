@@ -11,31 +11,63 @@
         a {
             text-decoration: none;
         }
+
+        .original-image {
+            width: 88%;
+            height: 96%;
+        }
     </style>
 </head>
 
 <body>
-    <button type="button" class="btn btn-outline-info  mx-2 my-2"><a href="index.html"> Go to main page</a></button>
-    <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator3.html">Back</a></button>
+    <button type="button" class="btn btn-outline-info mx-2 my-2"><a href="index.html"> Go to main page</a></button>
+    <button type="button" class="btn btn-outline-info m-3"><a href="Simulator3.html">Back</a></button>
 
     <div class="container">
         <div class="row">
+            <h5>To estimate, the volume fraction of pearlite (black phase), a method of thresholding is used. The
+                image has grey scale 0 (white) to 255 (black).Here I have used 4 different thresholds and have
+                calculated the corresponding fraction of pearlite phase. Please chose which one is correct?
+            </h5>
             <div class="col-md-8">
+                <img src="s4img/Original.jpg" alt="Original Image" class="original-image" />
+            </div>
+            <div class="col-md-4">
+               <p>Click left for previous image and click on right for next image . for select click on image</p>
                 <!-- Slider start  -->
-
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="false">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="s4img/0.2CarbonSteel500x.PNG" class="d-block w-100" alt="...">
+                            <img src="s4img/OptionA.png" class="d-block w-100 option-img" alt="Option A"
+                                data-option="A">
+                            <div class="image-values">
+                                <p>Threshold pixel: 60</p>
+                                <p>Fraction: 11.0%</p>
+                            </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="s4img/1.2CarbonSteel500x1.PNG" class="d-block w-100" alt="...">
+                            <img src="s4img/OptionB.png" class="d-block w-100 option-img" alt="Option B"
+                                data-option="B">
+                                <div class="image-values">
+                                    <p>Threshold pixel: 80</p>
+                                    <p>Fraction: 18.6%</p>
+                                </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="s4img/1.2CarbonSteel500x2.PNG" class="d-block w-100" alt="...">
+                            <img src="s4img/OptionC.png" class="d-block w-100 option-img" alt="Option C"
+                                data-option="C">
+                                <div class="image-values">
+                                    <p>Threshold pixel: 100</p>
+                                    <p>Fraction: 28.5%</p>
+                                </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="s4img/1.2CarbonSteel500x.PNG" class="d-block w-100" alt="...">
+                            <img src="s4img/OptionD.png" class="d-block w-100 option-img" alt="Option D"
+                                data-option="D">
+                                <div class="image-values">
+                                    <p>Threshold pixel: 120</p>
+                                    <p>Fraction: 45.7%</p>
+                                </div>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -49,15 +81,67 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-
                 <!-- Slider end -->
+                <div class="feedback mt-3"></div>
             </div>
-            <div class="col-md-4">
-                Here Content will be updated
-            </div>
-
         </div>
     </div>
+
+    <script>
+        const optionImages = document.querySelectorAll('.option-img');
+        const feedbackElement = document.querySelector('.feedback');
+
+        optionImages.forEach(image => {
+            image.addEventListener('click', () => {
+                const selectedOption = image.dataset.option;
+
+                // Change the active option and slide to the corresponding item
+                optionImages.forEach(img => img.classList.remove('active'));
+                image.classList.add('active');
+                const carousel = new bootstrap.Carousel(document.getElementById('carouselExampleControls'));
+                carousel.to(selectedOption.charCodeAt(0) - 'A'.charCodeAt(0));
+
+                // Check if selected option is correct and show feedback
+                if (selectedOption === 'B') {
+                    feedbackElement.textContent = 'You are correct!';
+                    feedbackElement.style.color = 'green';
+                } else {
+                    feedbackElement.textContent = 'Incorrect. Please try again.';
+                    feedbackElement.style.color = 'red';
+                }
+            });
+        });
+
+
+        // Show image values on slide change
+        const carousel = new bootstrap.Carousel(document.getElementById('carouselExampleControls'));
+        carousel._element.addEventListener('slid.bs.carousel', () => {
+            if (index === carousel._activeIndex) {
+                imageValuesElements[index].style.display = 'block';
+            } else {
+                imageValuesElements[index].style.display = 'none';
+            }
+        });
+    
+
+        // Stop at last slide when clicking next
+        document.querySelector('.carousel-control-next').addEventListener('click', () => {
+            if (currentSlide === optionImages.length - 1) {
+                carousel.pause();
+            } else {
+                currentSlide++;
+            }
+        });
+
+        // Stop at first slide when clicking prev
+        document.querySelector('.carousel-control-prev').addEventListener('click', () => {
+            if (currentSlide === 0) {
+                carousel.pause();
+            } else {
+                currentSlide--;
+            }
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -65,6 +149,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
