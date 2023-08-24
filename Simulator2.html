@@ -7,7 +7,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Add these lines in the <head> section -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
     <title>Steel part of CP diagram</title>
     <style>
         a {
@@ -15,43 +18,31 @@
         }
 
         .container {
-          
+
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
+        .right-side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 70px;
+            padding: 80px;
+            font-size: 18px;
+        }
 
-        /* Update CSS for .info-box to position each point's information differently */
-        /* .info-box {
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 10px;
-            z-index: 1;
-            display: none;
-        } */
+
 
         /* Update CSS for each point's information box (you can adjust these values based on your preferences) */
-        #point1-info {
-            top: 100px;
-            left: 50px;
-        }
 
-        #point2-info {
-            top: 200px;
-            left: 300px;
-        }
 
         .pointphoto {
-            width: 200px;
-            height: 150px;
+            width: 220px;
+            height: 170px;
         }
 
-        .fa-close:hover {
-            color: red;
-            cursor: pointer;
-        }
 
         #options {
             list-style: none;
@@ -61,17 +52,13 @@
             display: grid;
             grid-template-columns: repeat(1, 1fr);
             /* Two columns */
-            gap: 10px;
+            gap: 8px;
             /* Spacing between buttons */
-        }
-
-        #options li {
-            margin: 0;
         }
 
         #options li button {
             display: block;
-            padding: 10px 20px;
+            padding: 6px 8px;
             background-color: white;
             color: #0dcaf0;
             border: #0dcaf0 1px solid;
@@ -98,45 +85,39 @@
     <button type="button" class="btn btn-outline-info  m-3"><a href="index.html"> Go to main page</a></button>
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator1.html">Back</a></button>
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator3.html">Next</a></button>
-    <h4 class="d-flex justify-content-center align-items-center"> Steel Part of the Carbon Phase Diagram </h4>
+
+    <h2 class="d-flex justify-content-center align-items-center"> Steel Part of the Iron-Carbon Phase Diagram </h2>
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
-
-                <img src="images/Steel part of cp diagram dotted simulator 2 img.png" alt="Graph" usemap="#graphMap">
-                <map name="graphMap">
-                    <!-- Define clickable points with coordinates and title (name) -->
-                    <area alt="1" title="1" href="" coords="201,140,6" shape="circle"
-                        onclick="showInfo(event, '0'); return false;">
-
-                    <area alt="2" title="2" href="" coords="592,139,7" shape="circle"
-                        onclick="showInfo(event, '1'); return false;">
-
-                    <area alt="3" title="3" href="" coords="203,265,9" shape="circle"
-                        onclick="showInfo(event, '2'); return false;">
-
-                    <area alt="4" title="4" href="" coords="412,272,8" shape="circle"
-                        onclick="showInfo(event, '3'); return false;">
-
-                    <area alt="5" title="5" href="" coords="594,265,9" shape="circle"
-                        onclick="showInfo(event, '4'); return false;">
-
-                    <area alt="6" title="6" href="" coords="201,309,9" shape="circle"
-                        onclick="showInfo(event, '5'); return false;">
-
-                    <area alt="7" title="7" href="" coords="594,353,8" shape="circle"
-                        onclick="showInfo(event, '6'); return false;">
-
-                    <area alt="8" title="8" href="" coords="413,376,8" shape="circle"
-                        onclick="showInfo(event, '7'); return false;">
-
-                    <area alt="9" title="9" href="" coords="202,412,8" shape="circle"
-                        onclick="showInfo(event, '8'); return false;">
-                </map>
-            </div>
-            <div class="col-md-2">
-                <!--  Showing aflter click  -->
+            <div class="col-md-8">
                 <div>
+                    <img src="images/Steel part of cp diagram dotted simulator 2 img.png" alt="Graph"
+                        usemap="#graphMap">
+                    <map name="graphMap">
+                        <!-- Define clickable points with coordinates and title (name) -->
+                        <area alt="1" title="1" href="#" coords="187,131,214,159" shape="rect">
+
+                        <area alt="2" title="2" href="#" coords="581,128,610,156" shape="rect">
+
+                        <area alt="3" title="3" href="#" coords="187,262,216,290" shape="rect">
+
+                        <area alt="4" title="4" href="#" coords="396,267,425,295" shape="rect">
+
+                        <area alt="5" title="5" href="#" coords="581,266,610,294" shape="rect">
+
+                        <area alt="6" title="6" href="#" coords="186,299,215,327" shape="rect">
+
+                        <area alt="7" title="7" href="#" coords="584,438,613,466" shape="rect">
+
+                        <area alt="8" title="8" href="#" coords="398,436,427,464" shape="rect">
+
+                        <area alt="9" title="9" href="#" coords="186,438,215,466" shape="rect">
+                    </map>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!--  Showing aflter click  -->
+                <div class="right-side">
                     <!-- <i class="fa fa-close d-flex justify-content-end" style="font-size:24px"onclick="hideInfo()"></i> -->
                     <div class="info-box">
                         <p id="pointText"> Click on graph point for more details.</p>
@@ -161,52 +142,72 @@
     </div>
 
 
+    <!-- Add this right before the closing </body> tag -->
+    <div class="modal fade" id="quizCompletedModal" tabindex="-1" aria-labelledby="quizCompletedModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quizCompletedModalLabel">Quiz Completed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Congratulations! You have completed the quiz.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="location.reload()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         const points = [
             {
                 imageUrl: "images/point1andpoint4.png",
                 text: "Please select correct option .",
-                questionIndex: 1
+                questionIndex: 0
             },
             {
                 imageUrl: "images/point2.png",
                 text: "Please select correct option .",
-                questionIndex: 2
+                questionIndex: 1
             },
             {
                 imageUrl: "images/point3.png",
                 text: "Please select correct option .",
-                questionIndex: 3
+                questionIndex: 2
             },
             {
                 imageUrl: "images/point1andpoint4.png",
                 text: "Please select correct option .",
-                questionIndex: 4
+                questionIndex: 3
             },
             {
                 imageUrl: "images/point5.png",
                 text: "Please select correct option .",
-                questionIndex: 5
+                questionIndex: 4
             },
             {
                 imageUrl: "images/point6.png",
                 text: "Please select correct option .",
-                questionIndex: 6
+                questionIndex: 5
             },
             {
                 imageUrl: "images/point7.png",
                 text: "Please select correct option .",
-                questionIndex: 7
+                questionIndex: 6
             },
             {
                 imageUrl: "images/point8.png",
                 text: "Please select correct option .",
-                questionIndex: 8
+                questionIndex: 7
             },
             {
                 imageUrl: "images/point9.png",
                 text: "Please select correct option .",
-                questionIndex: 9
+                questionIndex: 8
             }
             // Add more points here...
         ];
@@ -225,9 +226,9 @@
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 3?",
-                options: ["Ferrite and Austenite", "Pearlite ", "Cementite", "Cementite and Pearlite "],
-                correctIndex: 2,
+                question: "What is the region of this point 3  red color=?  and gray color=?",
+                options: ["Ferrite and Austenite", "Pearlite and Ferrite ", "Austenite and Cementite", "Cementite and Pearlite "],
+                correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
@@ -237,68 +238,63 @@
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 5?",
-                options: ["Cementite and Austenite", "Austenite and Pearlite ", "Pearlite ", "Ferrite"],
+                question: "What is the region of this point 5 gray color=? and blue color=?",
+                options: ["Cementite and Austenite", "Austenite and Pearlite ", "Pearlite and Cementite", "Ferrite and Pearlite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 6?",
-                options: ["Ferrite and Austenite", "Pearlite ", "Cementite", "Cementite and Pearlite "],
+                question: "What is the region of this point 6 red color=? and gray color=?",
+                options: ["Ferrite and Austenite", "Pearlite and Ferrute", "Austenite and Cementite", "Cementite and Pearlite "],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 7?",
-                options: ["Pearlite and Cementite", "Austenite", "Ferrite", "Austenite and Ferrite"],
+                question: "What is the region of this point 7 red color=? and gray color=?",
+                options: ["Pearlite and Cementite", "Austenite and Ferrite", "Ferrite and pearlite", "Austenite and Ferrite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 8?",
-                options: ["Cementite and Ferrite", "Pearlite and Ferrite", "Austenite", "Austenite and Ferrite"],
+                question: "What is the region of this point 8 red color=? and gray color=??",
+                options: ["Ferrite and Cementite", "Pearlite and Ferrite", "Austenite and Cementite", "Austenite and Ferrite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 9?",
-                options: ["Ferrite and Cementite", "Austenite", "Pearlite ", "Pearlite and Ferrite"],
+                question: "What is the region of this point 9 red color=? and gray color=??",
+                options: ["Ferrite and Cementite", "Austenite and Ferrite", "Pearlite and Cementite", "Pearlite and Ferrite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             // Add more questions here...
         ];
 
-        let currentQuestionIndex = 1;
 
-        function showInfo(event, pointIndex) {
-            console.log("showInfo function called with info:", pointIndex);
-            const infoBox = document.querySelector('.info-box');
-            const pointImage = document.getElementById('pointImage');
-            const pointText = document.getElementById('pointText');
+        let currentPointIndex = 0; // Track the current point being processed
+        let currentQuestionIndex = 0; // Track the current question index
+
+        // Function to display the quiz for a specific point
+        function showQuizForPoint(pointIndex) {
+            const point = points[pointIndex];
             const quizContainer = document.getElementById('quiz');
             const questionElement = document.getElementById('question');
             const optionsList = document.getElementById('options');
             const resultElement = document.getElementById('result');
 
-            // Get the selected point
-            const selectedPoint = points[pointIndex];
-
             // Set the image source and text content
-            pointImage.src = selectedPoint.imageUrl;
-            pointText.textContent = selectedPoint.text;
+            pointImage.src = point.imageUrl;
+            pointText.textContent = point.text;
 
             // Display the quiz
-            quizContainer.style.top = `${event.pageY}px`;
-            quizContainer.style.left = `${event.pageX}px`;
             quizContainer.style.display = 'block';
 
-            // Display the current question based on the selected point
-            const questionIndex = pointIndex; // Use pointIndex as the question index
-            questionElement.textContent = questions[questionIndex].question;
+            // Display the current question
+            const question = questions[point.questionIndex];
+            questionElement.textContent = question.question;
 
             // Display the options
-            optionsList.innerHTML = questions[questionIndex].options.map((option, index) => {
+            optionsList.innerHTML = question.options.map((option, index) => {
                 return `<li><button onclick="checkAnswer(${index})">${option}</button></li>`;
             }).join('');
 
@@ -306,50 +302,43 @@
             resultElement.textContent = '';
         }
 
-
-
-        function checkAnswer(selectedIndex) {
-            const resultElement = document.getElementById('result');
-            const correctIndex = questions[currentQuestionIndex].correctIndex;
-
-            if (selectedIndex === correctIndex) {
-                resultElement.textContent = questions[currentQuestionIndex].feedback;
-                resultElement.style.color = 'green'; // Set text color to green for correct answer
+        // Function to proceed to the next point and start quiz
+        function nextPoint() {
+            currentPointIndex++;
+            if (currentPointIndex < points.length) {
+                showQuizForPoint(currentPointIndex);
             } else {
-                resultElement.textContent = "Incorrect. Please try again.";
-                resultElement.style.color = 'red'; // Set text color to red for incorrect answer
+                // Show the quiz completed modal
+                const quizCompletedModal = new bootstrap.Modal(document.getElementById('quizCompletedModal'));
+                quizCompletedModal.show();
             }
         }
 
-        function hideInfo() {
-            const infoBox = document.querySelector('.info-box');
-            infoBox.style.display = 'none';
+        function checkAnswer(selectedIndex) {
+            const resultElement = document.getElementById('result');
+            const question = questions[points[currentPointIndex].questionIndex];
+            const correctIndex = question.correctIndex;
+
+            if (selectedIndex === correctIndex) {
+                resultElement.textContent = question.feedback;
+                resultElement.style.color = 'green';
+                setTimeout(nextPoint, 1500); // Move to the next point after 1.5 seconds
+            } else {
+                resultElement.textContent = "Incorrect. Please try again.";
+                resultElement.style.color = 'red';
+            }
         }
+
+        // Function to be called when the page loads
+        function onPageLoad() {
+            showQuizForPoint(currentPointIndex);
+        }
+
+        window.onload = onPageLoad;
+
     </script>
 
-    <!-- <script>
-        function showInfo(event, info) {
-            const infoBox = document.querySelector('.info-box');
-            const pointImage = document.getElementById('pointImage');
-            const pointText = document.getElementById('pointText');
 
-            // Extract the image URL and text from the 'info' parameter
-            const [imageUrl, text] = info.split('|');
-
-            // Set the image source and text content
-            pointImage.src = imageUrl;
-            pointText.textContent = text;
-
-            infoBox.style.top = `${event.pageY}px`;
-            infoBox.style.left = `${event.pageX}px`;
-            infoBox.style.display = 'block';
-        }
-
-        function hideInfo() {
-            const infoBox = document.querySelector('.info-box');
-            infoBox.style.display = 'none';
-        }
-    </script> -->
 </body>
 
 </html>
