@@ -45,6 +45,14 @@
             /* Adjust the modal width as per your requirement */
         }
 
+        .right-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 115px;
+        }
+
         .microscope-images {
             width: 200px;
             height: 200px;
@@ -58,16 +66,6 @@
             border: 2px dashed #aaa;
         }
 
-        /* .microscope-images.droppable:hover {
-            border: 3px solid #f1e21a;
-            transform: scale(1.1);
-            /* Increase the scale to make it bigger */
-            /* transition: transform 0.3s;
-            /* Add a smooth transition effect */
-            /* width: 205px; */
-            /* height: 205px; */
-        /* } */ 
-
         .microscope-images.droppable:active {
             border-color: #f1e21a;
         }
@@ -78,44 +76,53 @@
     <button type="button" class="btn btn-outline-info  m-1"><a href="index.html"> Go to main page</a></button>
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator2.html">Back</a></button>
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator4.html">Next</a></button>
-    <h4 class="d-flex justify-content-center align-items-center"> First click on Point then choose corresponding image </h4>
+    <h2 class="d-flex justify-content-center align-items-center"> First click on Point then choose corresponding image
+    </h2>
 
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12">
-                <h1>Graph image</h1>
                 <img id="Image-Maps-Com-image-maps-2023-08-17-102103"
                     src="images/Steel part of cp diagram dotted simulator 3 img.png" border="0" width="1024"
                     height="768" usemap="#image-maps-2023-08-17-102103" alt="" />
                 <map name="image-maps-2023-08-17-102103" id="ImageMapsCom-image-maps-2023-08-17-102103">
 
-                    <area alt="Hypoeutectoid" title="Region A" href="" shape="rect" coords="188,411,212,431"
+                    <area alt="Austentite" title="Point 1" href="" shape="rect" coords="391,176,417,201"
                         style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region A', [188,411,212,431]); return false;" />
+                        onclick="highlightRegion('Point 1', [391,176,417,201]); return false;" />
 
-                    <area alt="Eutectoid" title="Region B" href="" shape="rect" coords="404,376,422,396"
+                    <area alt="Hypoeutectoid" title="Point 2" href="" shape="rect" coords="189,405,215,430"
                         style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region B', [404,376,422,396]); return false;" />
+                        onclick="highlightRegion('Point 2', [189,405,215,430]); return false;" />
 
-                    <area alt="Hypereutectoid" title="Region C" href="" shape="rect" coords="581,347,606,367"
+                    <area alt="Eutectoid" title="Point 3" href="" shape="rect" coords="393,406,419,431"
                         style="outline:none;" target="_self"
-                        onclick="highlightRegion('Region C', [581,347,606,367]); return false;" />
+                        onclick="highlightRegion('Point 3', [393,406,419,431]); return false;" />
+
+                    <area alt="Hypereutectoid" title="Point 4" href="" shape="rect" coords="573,404,599,429"
+                        style="outline:none;" target="_self"
+                        onclick="highlightRegion('Point 4', [573,404,599,429]); return false;" />
                 </map>
 
             </div>
 
             <div class="col-md-4 col-sm-12">
-                <div class="my-5">
-                    <h1>SEM micrographs</h1>
+                <div class="right-side">
+                    <h3>SEM micrographs</h3>
                     <div class="microscope">
-                        <img class="microscope-images droppable" src="images/Hypoeutectoid.png" alt="Hypoeutectoid"
-                            data-drop="Region A" onclick="matchImage(this)">
-                        <img class="microscope-images droppable" src="images/Eutectoid.png" alt="Eutectoid"
-                            data-drop="Region B" onclick="matchImage(this)">
-                        <img class="microscope-images droppable" src="images/Hypereutectoid.png" alt="Hypereutectoid"
-                            data-drop="Region C" onclick="matchImage(this)">
                         <img class="microscope-images droppable" src="images/Austentite.jfif" alt="Austentite"
-                            data-drop="Not define" onclick="matchImage(this)">
+                            data-drop="Point 1" data-bs-toggle="modal" data-bs-target="#myModal"
+                            onclick="matchImage(this)">
+
+                        <img class="microscope-images droppable" src="images/Hypoeutectoid.png" alt="Hypoeutectoid"
+                            data-drop="Point 2" data-bs-toggle="modal" data-bs-target="#myModal"
+                            onclick="matchImage(this)">
+                        <img class="microscope-images droppable" src="images/Eutectoid.png" alt="Eutectoid"
+                            data-drop="Point 3" data-bs-toggle="modal" data-bs-target="#myModal"
+                            onclick="matchImage(this)">
+                        <img class="microscope-images droppable" src="images/Hypereutectoid.png" alt="Hypereutectoid"
+                            data-drop="Point 4" data-bs-toggle="modal" data-bs-target="#myModal"
+                            onclick="matchImage(this)">
                     </div>
                 </div>
             </div>
@@ -131,6 +138,7 @@
                 </div>
                 <div class="modal-body">
                     <p id="matchingResult">please Click on region and click on correct matching image </p>
+                    <img id="matchingImage" src="" alt="Matching Image" style="max-width: 401px; max-height: 301px;">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" onclick="location.reload()"> OK </button>
@@ -151,79 +159,40 @@
 
             // Apply outline to the clicked area
             const clickedArea = document.querySelector('area[title="' + regionName + '"]');
-            clickedArea.style.outline = '3px solid yellow'; // Highlight with yellow outline
-
+            clickedArea.style.outline = '4px solid yellow'; // Highlight with yellow outline
+            clickedArea.style.borderRadius = '21px';
             // Set the dataset.region attribute
             clickedArea.dataset.region = regionName;
 
             selectedRegion = clickedArea; // Store the selected area
         }
 
-        // Function to handle matching the selected region with an image
         function matchImage(image) {
             const matchingResult = document.getElementById('matchingResult');
+            const matchingImage = document.getElementById('matchingImage');
+            const modal = new bootstrap.Modal(document.getElementById('myModal')); // Get the modal instance
 
             if (selectedRegion && selectedRegion.dataset.region === image.dataset.drop) {
                 matchingResult.textContent = 'Correct match!';
                 selectedRegion.style.outline = '3px solid green'; // Highlight with green outline
-                modal.show();
+                matchingImage.src = image.src; // Set the clicked image as the modal image source
+                modal.show(); // Show the modal
             } else {
                 matchingResult.textContent = 'Incorrect match. Please try again.';
-                modal.show();
+                matchingImage.src = image.src; // Set the clicked image as the modal image source
+                modal.show(); // Show the modal
             }
 
             // Clear the selection after processing
             selectedRegion.style.outline = 'none';
             selectedRegion = null;
-
-
         }
+        ś
+
     </script>
 
 
 
-    <!-- Correct  -->
-    <!-- <script>
-        $(document).ready(function () {
-            $(".microscope-images").draggable({
-                revert: true
-            });
-
-            $("#graphImage").droppable({
-                drop: function (event, ui) {
-                    var droppedImage = ui.draggable.attr("data-drop");
-                    var targetArea = $(this).parent().find('area[alt="' + droppedImage + '"]');
-                    var targetModal = $(targetArea.data("target"));
-                    var targetImageSrc = targetArea.data("image");
-
-                    var incorrectMatch = true; // Assume the match is incorrect initially
-
-                    if (targetArea.length > 0) {
-                        var targetCoords = targetArea.attr("coords").split(",");
-                        var dropX = ui.offset.left - $(this).offset().left;
-                        var dropY = ui.offset.top - $(this).offset().top;
-                        var areaX1 = parseInt(targetCoords[0]);
-                        var areaY1 = parseInt(targetCoords[1]);
-                        var areaX2 = parseInt(targetCoords[2]);
-                        var areaY2 = parseInt(targetCoords[3]);
-
-                        if (dropX >= areaX1 && dropX <= areaX2 && dropY >= areaY1 && dropY <= areaY2) {
-                            incorrectMatch = false; // The match is correct
-                            $("#matchingResult").text("Success! The dropped image matches the selected region.");
-                            // targetModal.find(".modal-body").html('<img src="' + targetImageSrc + '" alt="' + droppedImage + '">');
-                        }
-                    }
-
-                    if (incorrectMatch) {
-                        $("#matchingResult").text("Try again! The dropped image does not match the selected region.");
-                    }
-
-                    $("#myModal").modal("show");
-                }
-            });
-        });
-
-    </script>  -->
 
 
 
