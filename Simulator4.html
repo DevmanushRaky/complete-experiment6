@@ -33,7 +33,7 @@
                 <img src="s4img/Original.jpg" alt="Original Image" class="original-image" />
             </div>
             <div class="col-md-4">
-               <p>Click left for previous image and click on right for next image . for select click on image</p>
+               <p>Click left for reduce contrast and click on right for Increase Contrast. for select click on image</p>
                 <!-- Slider start  -->
                 <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="false">
                     <div class="carousel-inner">
@@ -41,39 +41,55 @@
                             <img src="s4img/OptionA.png" class="d-block w-100 option-img" alt="Option A"
                                 data-option="A">
                             <div class="image-values">
-                                <p>Threshold pixel: 60</p>
-                                <p>Fraction: 11.0%</p>
+                                <p>Threshold pixel: 40</p>
+                                <p>Fraction: 5.4%</p>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <img src="s4img/OptionB.png" class="d-block w-100 option-img" alt="Option B"
                                 data-option="B">
                                 <div class="image-values">
-                                    <p>Threshold pixel: 80</p>
-                                    <p>Fraction: 18.6%</p>
+                                    <p>Threshold pixel: 60</p>
+                                    <p>Fraction: 11.0%</p>
                                 </div>
                         </div>
                         <div class="carousel-item">
                             <img src="s4img/OptionC.png" class="d-block w-100 option-img" alt="Option C"
                                 data-option="C">
                                 <div class="image-values">
-                                    <p>Threshold pixel: 100</p>
-                                    <p>Fraction: 28.5%</p>
+                                    <p>Threshold pixel: 80</p>
+                                    <p>Fraction: 18.6%</p>
                                 </div>
                         </div>
                         <div class="carousel-item">
                             <img src="s4img/OptionD.png" class="d-block w-100 option-img" alt="Option D"
                                 data-option="D">
                                 <div class="image-values">
+                                    <p>Threshold pixel: 100</p>
+                                    <p>Fraction: 28.5%</p>
+                                </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="s4img/OptionE.png" class="d-block w-100 option-img" alt="Option E"
+                                data-option="D">
+                                <div class="image-values">
                                     <p>Threshold pixel: 120</p>
                                     <p>Fraction: 45.7%</p>
+                                </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="s4img/OptionF.png" class="d-block w-100 option-img" alt="Option F"
+                                data-option="D">
+                                <div class="image-values">
+                                    <p>Threshold pixel: 140</p>
+                                    <p>Fraction: 76.6%</p>
                                 </div>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <span class="">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
                         data-bs-slide="next">
@@ -102,7 +118,7 @@
                 carousel.to(selectedOption.charCodeAt(0) - 'A'.charCodeAt(0));
 
                 // Check if selected option is correct and show feedback
-                if (selectedOption === 'B') {
+                if (selectedOption === 'C') {
                     feedbackElement.textContent = 'You are correct!';
                     feedbackElement.style.color = 'green';
                 } else {
