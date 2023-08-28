@@ -77,6 +77,9 @@
             background-color: #0dcaf0;
             transform: translateY(2px);
         }
+        #question {
+            font-weight: bold;
+        }
     </style>
 
 </head>
@@ -87,6 +90,13 @@
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator3.html">Next</a></button>
 
     <h2 class="d-flex justify-content-center align-items-center"> Steel Part of the Iron-Carbon Phase Diagram </h2>
+    <details class="d-flex justify-content-center align-items-center">
+        <summary class="px-3">Disclaimer : Click to see full details</summary>
+        <p class="d-flex justify-content-center align-items-center p-3"> Please note that the pearlite is not a phase,
+            it is a laminar structure of ferrite and cementite. However, since we are differentiating the hypo and hyper
+            eutectoid phase, we have treated Pearlite as being one of the "phase", to differentiate between the two.
+            Once again, strictly speaking, "pearlite is not a phase"</p>
+    </details>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -155,7 +165,7 @@
                     Congratulations! You have completed the quiz.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="location.reload()">Close</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.reload()">Restart Quiz</button>
                 </div>
             </div>
         </div>
@@ -166,47 +176,47 @@
         const points = [
             {
                 imageUrl: "images/point1andpoint4.png",
-                text: "Please select correct option .",
+                text: "Point 1: Please select correct option .",
                 questionIndex: 0
             },
             {
                 imageUrl: "images/point2.png",
-                text: "Please select correct option .",
+                text: "Point 2: Please select correct option .",
                 questionIndex: 1
             },
             {
                 imageUrl: "images/point3.png",
-                text: "Please select correct option .",
+                text: "Point 3: Please select correct option .",
                 questionIndex: 2
             },
             {
                 imageUrl: "images/point1andpoint4.png",
-                text: "Please select correct option .",
+                text: "Point 4: Please select correct option .",
                 questionIndex: 3
             },
             {
                 imageUrl: "images/point5.png",
-                text: "Please select correct option .",
+                text: "Point 5: Please select correct option .",
                 questionIndex: 4
             },
             {
                 imageUrl: "images/point6.png",
-                text: "Please select correct option .",
+                text: "Point 6: Please select correct option .",
                 questionIndex: 5
             },
             {
                 imageUrl: "images/point7.png",
-                text: "Please select correct option .",
+                text: "Point 7: Please select correct option .",
                 questionIndex: 6
             },
             {
                 imageUrl: "images/point8.png",
-                text: "Please select correct option .",
+                text: "Point 8: Please select correct option .",
                 questionIndex: 7
             },
             {
                 imageUrl: "images/point9.png",
-                text: "Please select correct option .",
+                text: "Point 9: Please select correct option .",
                 questionIndex: 8
             }
             // Add more points here...
@@ -214,57 +224,57 @@
 
         const questions = [
             {
-                question: "What is the region of this point 1?",
+                question: "What phase is represented by “yellow” region ?",
                 options: ["Austenite", "Austenite and Ferrite", "Pearlite", "Cementite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 2?",
-                options: ["Austenite", "Ferrite", "Perrlite", "Ferrite and Cementite"],
-                correctIndex: 0,
+                question: "What phase is represented by “Gray” region ?",
+                options: ["Ferrite and Cementite", "Ferrite", "Perrlite", "Austenite"],
+                correctIndex: 3,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 3  red color=?  and gray color=?",
-                options: ["Ferrite and Austenite", "Pearlite and Ferrite ", "Austenite and Cementite", "Cementite and Pearlite "],
-                correctIndex: 0,
+                question: "What are the phases represented by “Red” and “Gray” colors?",
+                options: ["Pearlite and Ferrite ", "Ferrite and Austenite", "Austenite and Cementite", "Cementite and Pearlite "],
+                correctIndex: 1,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 4?",
-                options: ["Austenite", "Ferrite", "Pearlite ", "Cementite"],
-                correctIndex: 0,
+                question: "What phase is represented by “Gray” region ?",
+                options: ["Pearlite ", "Ferrite", "Austenite", "Cementite"],
+                correctIndex: 2,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 5 gray color=? and blue color=?",
+                question: "What are the phases represented by “Gray” and “Blue” colors?",
                 options: ["Cementite and Austenite", "Austenite and Pearlite ", "Pearlite and Cementite", "Ferrite and Pearlite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 6 red color=? and gray color=?",
-                options: ["Ferrite and Austenite", "Pearlite and Ferrute", "Austenite and Cementite", "Cementite and Pearlite "],
-                correctIndex: 0,
+                question: "What are the phases represented by “Red” and “Gray” colors?",
+                options: ["Austenite and Cementite", "Pearlite and Ferrite", "Ferrite and Austenite", "Cementite and Pearlite "],
+                correctIndex: 2,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 7 red color=? and gray color=?",
+                question: "What are the phases represented by “Red” and “Gray” colors?",
                 options: ["Pearlite and Cementite", "Austenite and Ferrite", "Ferrite and pearlite", "Austenite and Ferrite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 8 red color=? and gray color=??",
-                options: ["Ferrite and Cementite", "Pearlite and Ferrite", "Austenite and Cementite", "Austenite and Ferrite"],
-                correctIndex: 0,
+                question: "What are the phases represented by “Red” and “Gray” colors?",
+                options: ["Austenite and Ferrite", "Pearlite and Ferrite", "Austenite and Cementite", "Ferrite and Cementite"],
+                correctIndex: 3,
                 feedback: "You are correct!"
             },
             {
-                question: "What is the region of this point 9 red color=? and gray color=??",
-                options: ["Ferrite and Cementite", "Austenite and Ferrite", "Pearlite and Cementite", "Pearlite and Ferrite"],
-                correctIndex: 0,
+                question: "What are the phases represented by “Red” and “Gray” colors?",
+                options: ["Austenite and Ferrite", "Ferrite and Cementite", "Pearlite and Cementite", "Pearlite and Ferrite"],
+                correctIndex: 1,
                 feedback: "You are correct!"
             },
             // Add more questions here...
