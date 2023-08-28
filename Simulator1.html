@@ -51,6 +51,10 @@
             transition: fill 0.3s, stroke 0.3s;
         }
 
+        .question {
+            font-weight: bold;
+        }
+
         .info-box {
             display: flex;
             justify-content: center;
@@ -68,6 +72,10 @@
     <button type="button" class="btn btn-outline-info  m-3"><a href="index.html">Back </a></button>
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator2.html">Next </a></button>
     <h2 class="d-flex justify-content-center align-items-center"> Steel Part of the Iron-Carbon Phase Diagram </h2>
+    <details class="d-flex justify-content-center align-items-center">
+        <summary class="px-3">Disclaimer : Click to see full details</summary>
+        <p class="d-flex justify-content-center align-items-center p-3"> Please note that the pearlite is not a phase, it is a laminar structure of ferrite and cementite. However, since we are differentiating the hypo and hyper eutectoid phase, we have treated Pearlite as being one of the "phase", to differentiate between the two. Once again, strictly speaking, "pearlite is not a phase"</p>
+      </details>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 relative-container">
@@ -78,26 +86,26 @@
                 <div class="svg-container">
                     <svg id="imageMapSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
                         <!-- Region F -->
-                        <polygon id="polygon-6" points="955,320 955,0 459,325" ></polygon>
+                        <polygon id="polygon-6" points="955,320 955,0 459,325"></polygon>
 
                         <!-- Region C -->
                         <polygon id="polygon-3" points="460,325,460,715,975,715,975,325"></polygon>
 
                         <!-- Region B -->
-                        <polygon id="polygon-2" points="155,325 455,325,455,715,132,715" ></polygon>
+                        <polygon id="polygon-2" points="155,325 455,325,455,715,132,715"></polygon>
 
                         <!-- Region A -->
-                        <polygon id="polygon-1" points="118,120,120,715,130,715,148,327" ></polygon>
+                        <polygon id="polygon-1" points="118,120,120,715,130,715,148,327"></polygon>
 
                         <!-- Region D -->
                         <polygon id="polygon-4"
-                            points="120,110 150,324 415,324 360,305 318,290 272,270 230,245 200,222 161,187" >
+                            points="120,110 150,324 415,324 360,305 318,290 272,270 230,245 200,222 161,187">
                         </polygon>
 
                         <!-- Region E -->
                         <polygon id="polygon-5"
-                            points="455,324 813,83 118,83 130,121 138,145 159,180 184,205 205,225 226,245 261,265 296,280 329,295 363,310"
-                            ></polygon>
+                            points="455,324 813,83 118,83 130,121 138,145 159,180 184,205 205,225 226,245 261,265 296,280 329,295 363,310">
+                        </polygon>
 
                         <!-- Region F -->
                         <!-- <polygon id="polygon-6" points="974,327,970,3,458,325" /> -->
@@ -125,12 +133,14 @@
 
             <div class="col-md-4 col-sm-12">
                 <div class="info-box">
-                    <div class="question">Which phase is represented by this region ? </div>
+             
+                    <div class="question"> Which of the following phases are present in the shaded region ? </div>
+                   
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="option" value="OnlyFerrite"
-                            id="OnlyFerrite">
-                        <label class="form-check-label" for="OnlyFerrite">
-                            Only Ferrite
+                        <input class="form-check-input" type="checkbox" name="option" value="PearliteCementite"
+                            id="PearliteCementite">
+                        <label class="form-check-label" for="PearliteCementite">
+                            Pearlite and Cementite
                         </label>
                     </div>
                     <div class="form-check">
@@ -140,18 +150,19 @@
                             Ferrite and Pearlite
                         </label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="option" value="PearliteCementite"
-                            id="PearliteCementite">
-                        <label class="form-check-label" for="PearliteCementite">
-                            Pearlite and Cementite
-                        </label>
-                    </div>
+
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="option" value="FerriteAustenite"
                             id="FerriteAustenite">
                         <label class="form-check-label" for="FerriteAustenite">
                             Ferrite and Austenite
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="option" value="OnlyFerrite"
+                            id="OnlyFerrite">
+                        <label class="form-check-label" for="OnlyFerrite">
+                            Only Ferrite
                         </label>
                     </div>
                     <div class="form-check">
@@ -239,7 +250,7 @@
             // Show the info box and set the initial question
             const infoBox = document.querySelector('.info-box');
             const question = document.querySelector('.question');
-            question.textContent = `Which phase is represented by ${areaName}?`;
+            question.textContent = `Which of the following phases are present in the shaded  ${areaName}?`;
             infoBox.style.top = `${event.pageY}px`;
             infoBox.style.left = `${event.pageX}px`;
             infoBox.style.display = 'block';
@@ -319,8 +330,8 @@
 
             // Update the question for the next region
             const question = document.querySelector('.question');
-            question.textContent = `Which phase is represented by ${regions[currentRegionIndex]}?`;
-            console.log(" region ka curent region index shownext quiz", regions[currentRegionIndex + 1]);
+            question.textContent = `Which of the following phases are present in the shaded  ${regions[currentRegionIndex]}?`;
+
 
             // Show the info box again with the updated content
             infoBox.style.display = 'block';
