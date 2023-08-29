@@ -17,6 +17,14 @@
             text-decoration: none;
         }
 
+        .disclaimer {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: red;
+        }
+
         .relative-container {
             position: relative;
             max-width: 100%;
@@ -72,10 +80,11 @@
     <button type="button" class="btn btn-outline-info  m-3"><a href="index.html">Back </a></button>
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator2.html">Next </a></button>
     <h2 class="d-flex justify-content-center align-items-center"> Steel Part of the Iron-Carbon Phase Diagram </h2>
-    <details class="d-flex justify-content-center align-items-center">
-        <summary class="px-3">Disclaimer : Click to see full details</summary>
-        <p class="d-flex justify-content-center align-items-center p-3"> Please note that the pearlite is not a phase, it is a laminar structure of ferrite and cementite. However, since we are differentiating the hypo and hyper eutectoid phase, we have treated Pearlite as being one of the "phase", to differentiate between the two. Once again, strictly speaking, "pearlite is not a phase"</p>
-      </details>
+    <p class="disclaimer">Disclaimer: Please note that the pearlite is not a phase, it is a laminar structure of ferrite
+        and cementite. However, since we are differentiating the hypo and hyper eutectoid phase, we have treated
+        Pearlite as being one of the "phase", to differentiate between the two. Once again, strictly speaking, "pearlite
+        is not a phase"</p>
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 relative-container">
@@ -133,9 +142,9 @@
 
             <div class="col-md-4 col-sm-12">
                 <div class="info-box">
-             
+
                     <div class="question"> Which of the following phases are present in the shaded region ? </div>
-                   
+
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="option" value="PearliteCementite"
                             id="PearliteCementite">
@@ -204,6 +213,23 @@
 
 
     <script>
+        // for one checkbox at time 
+        const checkboxes = document.querySelectorAll('.form-check-input');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    checkboxes.forEach(otherCheckbox => {
+                        if (otherCheckbox !== this) {
+                            otherCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+
+
+
         var initialArea = "Region A";
         let currentRegionIndex = 0;
         const regions = [
@@ -250,7 +276,7 @@
             // Show the info box and set the initial question
             const infoBox = document.querySelector('.info-box');
             const question = document.querySelector('.question');
-            question.textContent = `Which of the following phases are present in the shaded  ${areaName}?`;
+            question.textContent = `Which of the following phases are present in the shaded  region ?`;
             infoBox.style.top = `${event.pageY}px`;
             infoBox.style.left = `${event.pageX}px`;
             infoBox.style.display = 'block';
@@ -330,7 +356,7 @@
 
             // Update the question for the next region
             const question = document.querySelector('.question');
-            question.textContent = `Which of the following phases are present in the shaded  ${regions[currentRegionIndex]}?`;
+            question.textContent = `Which of the following phases are present in the shaded  region ?`;
 
 
             // Show the info box again with the updated content
