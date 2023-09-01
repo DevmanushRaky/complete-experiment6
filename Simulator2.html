@@ -32,7 +32,6 @@
             align-items: center;
         }
 
-
         .right-side {
             display: flex;
             justify-content: center;
@@ -289,6 +288,8 @@
         let currentPointIndex = 0; // Track the current point being processed
         let currentQuestionIndex = 0; // Track the current question index
 
+
+
         // Function to display the quiz for a specific point
         function showQuizForPoint(pointIndex) {
             const point = points[pointIndex];
@@ -296,6 +297,8 @@
             const questionElement = document.getElementById('question');
             const optionsList = document.getElementById('options');
             const resultElement = document.getElementById('result');
+
+        
 
             // Set the image source and text content
             pointImage.src = point.imageUrl;
@@ -337,7 +340,9 @@
             if (selectedIndex === correctIndex) {
                 resultElement.textContent = question.feedback;
                 resultElement.style.color = 'green';
-                setTimeout(nextPoint, 1500); // Move to the next point after 1.5 seconds
+                setTimeout(() => {
+                    nextPoint(); // Move to the next point after 1.5 seconds
+                }, 1500);
             } else {
                 resultElement.textContent = "Incorrect. Please try again.";
                 resultElement.style.color = 'red';
