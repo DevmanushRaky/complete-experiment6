@@ -17,6 +17,14 @@
             text-decoration: none;
         }
 
+        .disclaimer {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: red;
+        }
+
         .container {
 
             display: flex;
@@ -24,11 +32,12 @@
             align-items: center;
         }
 
+
         .right-side {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 70px;
+            margin-top: 30px;
             padding: 80px;
             font-size: 18px;
         }
@@ -39,8 +48,8 @@
 
 
         .pointphoto {
-            width: 220px;
-            height: 170px;
+            width: 300px;
+            height: 220px;
         }
 
 
@@ -77,6 +86,7 @@
             background-color: #0dcaf0;
             transform: translateY(2px);
         }
+
         #question {
             font-weight: bold;
         }
@@ -90,40 +100,29 @@
     <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator3.html">Next</a></button>
 
     <h2 class="d-flex justify-content-center align-items-center"> Steel Part of the Iron-Carbon Phase Diagram </h2>
-    <details class="d-flex justify-content-center align-items-center">
-        <summary class="px-3">Disclaimer : Click to see full details</summary>
-        <p class="d-flex justify-content-center align-items-center p-3"> Please note that the pearlite is not a phase,
-            it is a laminar structure of ferrite and cementite. However, since we are differentiating the hypo and hyper
-            eutectoid phase, we have treated Pearlite as being one of the "phase", to differentiate between the two.
-            Once again, strictly speaking, "pearlite is not a phase"</p>
-    </details>
+    <p class="disclaimer">Disclaimer: Please note that the pearlite is not a phase, it is a laminar structure of ferrite
+        and cementite. However, since we are differentiating the hypo and hyper eutectoid phase, we have treated
+        Pearlite as being one of the "phase", to differentiate between the two. Once again, strictly speaking, "pearlite
+        is not a phase"</p>
+
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <div>
-                    <img src="images/Steel part of cp diagram dotted simulator 2 img.png" alt="Graph"
-                        usemap="#graphMap">
-                    <map name="graphMap">
-                        <!-- Define clickable points with coordinates and title (name) -->
-                        <area alt="1" title="1" href="#" coords="187,131,214,159" shape="rect">
+            <div class="col-md-8 ">
 
-                        <area alt="2" title="2" href="#" coords="581,128,610,156" shape="rect">
+                <img src="images/Steel part of cp diagram dotted simulator 2 img.png" alt="Graph" usemap="#graphMap">
+                <map name="graphMap">
+                    <!-- Define clickable points with coordinates and title (name) -->
+                    <area alt="1" title="1" href="#" coords="201,135,10" shape="circle">
+                    <area alt="2" title="2" href="#" coords="203,271,10" shape="circle">
+                    <area alt="3" title="3" href="#" coords="200,301,10" shape="circle">
+                    <area alt="4" title="4" href="#" coords="200,442,10" shape="circle">
+                    <area alt="5" title="5" href="#" coords="413,272,10" shape="circle">
+                    <area alt="6" title="6" href="#" coords="413,443,10" shape="circle">
+                    <area alt="7" title="7" href="#" coords="594,134,10" shape="circle">
+                    <area alt="8" title="8" href="#" coords="594,270,10" shape="circle">
+                    <area alt="9" title="9" href="#" coords="598,446,10" shape="circle">
+                </map>
 
-                        <area alt="3" title="3" href="#" coords="187,262,216,290" shape="rect">
-
-                        <area alt="4" title="4" href="#" coords="396,267,425,295" shape="rect">
-
-                        <area alt="5" title="5" href="#" coords="581,266,610,294" shape="rect">
-
-                        <area alt="6" title="6" href="#" coords="186,299,215,327" shape="rect">
-
-                        <area alt="7" title="7" href="#" coords="584,438,613,466" shape="rect">
-
-                        <area alt="8" title="8" href="#" coords="398,436,427,464" shape="rect">
-
-                        <area alt="9" title="9" href="#" coords="186,438,215,466" shape="rect">
-                    </map>
-                </div>
             </div>
             <div class="col-md-4">
                 <!--  Showing aflter click  -->
@@ -175,108 +174,114 @@
     <script>
         const points = [
             {
-                imageUrl: "images/point1andpoint4.png",
+                imageUrl: "images/point1andpoint5.png",
                 text: "Point 1: Please select correct option .",
                 questionIndex: 0
             },
             {
                 imageUrl: "images/point2.png",
-                text: "Point 2: Please select correct option .",
+                text: "Point 2 : Please select correct option .",
                 questionIndex: 1
             },
             {
                 imageUrl: "images/point3.png",
-                text: "Point 3: Please select correct option .",
+                text: "Point 3 : Please select correct option .",
                 questionIndex: 2
             },
             {
-                imageUrl: "images/point1andpoint4.png",
-                text: "Point 4: Please select correct option .",
+                imageUrl: "images/point4.png",
+                text: "Point 4 : Please select correct option .",
                 questionIndex: 3
             },
             {
-                imageUrl: "images/point5.png",
-                text: "Point 5: Please select correct option .",
+                imageUrl: "images/point1andpoint5.png",
+                text: "Point 5 : Please select correct option .",
                 questionIndex: 4
             },
             {
                 imageUrl: "images/point6.png",
-                text: "Point 6: Please select correct option .",
+                text: "Point 6 : Please select correct option .",
                 questionIndex: 5
             },
             {
                 imageUrl: "images/point7.png",
-                text: "Point 7: Please select correct option .",
+                text: "Point 7 : Please select correct option .",
                 questionIndex: 6
             },
+
             {
                 imageUrl: "images/point8.png",
-                text: "Point 8: Please select correct option .",
+                text: "Point 8 : Please select correct option .",
                 questionIndex: 7
             },
+
             {
                 imageUrl: "images/point9.png",
-                text: "Point 9: Please select correct option .",
+                text: "Point 9 : Please select correct option .",
                 questionIndex: 8
-            }
+            },
+
+
             // Add more points here...
         ];
 
         const questions = [
             {
-                question: "What phase is represented by “yellow” region ?",
+                question: "What phase is represented by “Grey” region ?",
                 options: ["Austenite", "Austenite and Ferrite", "Pearlite", "Cementite"],
                 correctIndex: 0,
                 feedback: "You are correct!"
             },
             {
-                question: "What phase is represented by “Gray” region ?",
-                options: ["Ferrite and Cementite", "Ferrite", "Perrlite", "Austenite"],
-                correctIndex: 3,
-                feedback: "You are correct!"
-            },
-            {
-                question: "What are the phases represented by “Red” and “Gray” colors?",
+                question: "What are the phases represented by “Red” and “Grey” colors?",
                 options: ["Pearlite and Ferrite ", "Ferrite and Austenite", "Austenite and Cementite", "Cementite and Pearlite "],
                 correctIndex: 1,
                 feedback: "You are correct!"
             },
             {
-                question: "What phase is represented by “Gray” region ?",
-                options: ["Pearlite ", "Ferrite", "Austenite", "Cementite"],
-                correctIndex: 2,
-                feedback: "You are correct!"
-            },
-            {
-                question: "What are the phases represented by “Gray” and “Blue” colors?",
-                options: ["Cementite and Austenite", "Austenite and Pearlite ", "Pearlite and Cementite", "Ferrite and Pearlite"],
-                correctIndex: 0,
-                feedback: "You are correct!"
-            },
-            {
-                question: "What are the phases represented by “Red” and “Gray” colors?",
+                question: "What are the phases represented by “Red” and “Grey” colors?",
                 options: ["Austenite and Cementite", "Pearlite and Ferrite", "Ferrite and Austenite", "Cementite and Pearlite "],
                 correctIndex: 2,
                 feedback: "You are correct!"
             },
             {
-                question: "What are the phases represented by “Red” and “Gray” colors?",
-                options: ["Pearlite and Cementite", "Austenite and Ferrite", "Ferrite and pearlite", "Austenite and Ferrite"],
-                correctIndex: 0,
-                feedback: "You are correct!"
-            },
-            {
-                question: "What are the phases represented by “Red” and “Gray” colors?",
-                options: ["Austenite and Ferrite", "Pearlite and Ferrite", "Austenite and Cementite", "Ferrite and Cementite"],
-                correctIndex: 3,
-                feedback: "You are correct!"
-            },
-            {
-                question: "What are the phases represented by “Red” and “Gray” colors?",
+                question: "What are the phases represented by hghlighted region and  “Red” and “Blue” colors?",
                 options: ["Austenite and Ferrite", "Ferrite and Cementite", "Pearlite and Cementite", "Pearlite and Ferrite"],
                 correctIndex: 1,
                 feedback: "You are correct!"
             },
+            {
+                question: "What phase is represented by “Grey” region ?",
+                options: ["Pearlite ", "Ferrite", "Austenite", "Cementite"],
+                correctIndex: 2,
+                feedback: "You are correct!"
+            },
+            {
+                question: "Which is the phase represented by this microstructure?",
+                options: ["Cementite", "Ferrite", "Austenite", "Pearlite"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What phase is represented by “Grey” region ?",
+                options: ["Ferrite and Cementite", "Ferrite", "Perrlite", "Austenite"],
+                correctIndex: 3,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What are the phases represented by “Grey” and “Blue” colors?",
+                options: ["Austenite and Cementite", "Austenite and Pearlite ", "Pearlite and Cementite", "Ferrite and Pearlite"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What are the phases represented by highlighted region and  “Red” and “Grey” colors?",
+                options: ["Ferrite and pearlite", "Austenite and Ferrite", "Pearlite and Cementite", "Austenite and Ferrite"],
+                correctIndex: 2,
+                feedback: "You are correct!"
+            }
+
+
             // Add more questions here...
         ];
 
