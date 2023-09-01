@@ -212,6 +212,29 @@
     </div>
 
 
+
+
+    <!-- Add this right before the closing </body> tag -->
+    <div class="modal fade" id="quizCompletedModal" tabindex="-1" aria-labelledby="quizCompletedModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quizCompletedModalLabel">Quiz Completed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Congratulations! You have completed the quiz.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="location.reload()">Restart Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <script>
         // for one checkbox at time 
         const checkboxes = document.querySelectorAll('.form-check-input');
@@ -370,24 +393,9 @@
 
         // When quiz completed
         function showCompletionMessage() {
-            const infoBox = document.querySelector('.info-box');
-            const feedback = document.querySelector('.feedback');
-            feedback.textContent = "Congratulations! You've completed the quiz.";
-            feedback.style.color = 'red'; // Set the color to green
-
-            // Hide checkboxes and "Check Answer" button
-            const options = document.querySelectorAll('.options input[type="checkbox"]');
-            const checkButton = document.querySelector('.options button');
-
-            // options.forEach(option => option.style.display = 'none');
-            checkButton.style.display = 'none';
-
-            infoBox.style.display = 'block';
-
-            // Reload the page after a delay of 3 seconds (3000 milliseconds)
-            setTimeout(() => {
-                location.reload();
-            }, 3000);
+            // Show the quiz completed modal
+            const quizCompletedModal = new bootstrap.Modal(document.getElementById('quizCompletedModal'));
+            quizCompletedModal.show();
         }
 
     </script>
