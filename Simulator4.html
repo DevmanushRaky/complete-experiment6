@@ -30,6 +30,37 @@
         p{
             margin-bottom: 0;
         }
+        .img-caption {
+            margin-top: 5px;
+            color: #722F37;
+        }
+        #submitBtn{
+            border: none;
+            background-color: #722F37;
+        }
+
+
+           /* Change the color of the range slider track */
+           input[type="range"]::-webkit-slider-runnable-track {
+            background-color: #d295b5;
+            /* Change to your desired color */
+        }
+
+        input[type="range"]::-moz-range-progress {
+            background-color: #d295b5;
+            /* Change to your desired color */
+        }
+
+        /* Change the color of the slider thumb */
+        input[type="range"]::-webkit-slider-thumb {
+            background-color: #e74c3c;
+            /* Change to your desired color */
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            background-color: #e74c3c;
+            /* Change to your desired color */
+        }
     </style>
 </head>
 
@@ -45,11 +76,12 @@
                 their corresponding fraction of pearlite phase. Please choose which one is the correct estimate?
             </h5>
             <div class="col-md-6">
+                <h5 class="img-caption">Microstructure</h5>
                 <img src="s4img/Original.jpg" alt="Original Image" class="original-image" />
             </div>
 
             <div class="col-md-6">
-               
+                <h5 class="img-caption">Predicted Threshold Microstructure</h5>
                 <!-- Options -->
                 <div id="options">
                     <img src="s4img/OptionA.png" class="option-img" alt="Option A" data-option="A">
@@ -100,6 +132,20 @@
                         <p class="num-values">Vol.% of black region: 76.6%</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <form id="pearliteForm" class="my-3">
+                    <div class="form-group">
+                        <label for="pearliteFraction">Enter Vol. fraction of pearlite phase:</label>
+                        <input type="text" class="form-control" id="pearliteFraction" placeholder="e.g., 15.66"
+                            required autocomplete="off">
+                        <small class="form-text text-muted">Please enter a number with a decimal point without including "%".</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+
+                </form>
             </div>
         </div>
     </div>
@@ -240,27 +286,60 @@
         rangeInput.addEventListener('input', handleRangeChange);
 
         // Event listeners for option image clicks
-        const optionImages = document.querySelectorAll('.option-img');
-        optionImages.forEach((img) => {
-            img.addEventListener('click', function () {
-                const option = img.getAttribute('data-option');
-                const selectedOption = rangeInput.value;
+        // const optionImages = document.querySelectorAll('.option-img');
+        // optionImages.forEach((img) => {
+        //     img.addEventListener('click', function () {
+        //         const option = img.getAttribute('data-option');
+        //         const selectedOption = rangeInput.value;
 
-                if (option === "C" && selectedOption === "2") {
-                    // Show the correct modal
-                    // $('#correctModal').modal('show');
-                    // Show the quiz completed modal
-                    const quizCompletedModal1 = new bootstrap.Modal(document.getElementById('correctModal'));
-                    quizCompletedModal1.show();
-                } else {
-                    // Show the incorrect modal
-                    // $('#incorrectModal').modal('show');
-                    // Show the quiz completed modal
-                    const quizCompletedModal2 = new bootstrap.Modal(document.getElementById('incorrectModal'));
-                    quizCompletedModal2.show();
-                }
-            });
-        });
+        //         if (option === "C" && selectedOption === "2") {
+        //             // Show the correct modal
+        //             // $('#correctModal').modal('show');
+        //             // Show the quiz completed modal
+        //             const quizCompletedModal1 = new bootstrap.Modal(document.getElementById('correctModal'));
+        //             quizCompletedModal1.show();
+        //         } else {
+        //             // Show the incorrect modal
+        //             // $('#incorrectModal').modal('show');
+        //             // Show the quiz completed modal
+        //             const quizCompletedModal2 = new bootstrap.Modal(document.getElementById('incorrectModal'));
+        //             quizCompletedModal2.show();
+        //         }
+        //     });
+        // });
+
+
+   // code for match the input fields values 
+        // Function to handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the form from actually submitting
+
+            // Get the user-entered fraction from the input field
+            const enteredFraction = parseFloat(document.getElementById('pearliteFraction').value);
+
+            // Define the correct fraction value
+            const correctFraction = 18.6;
+
+            // Check if the entered fraction matches the correct fraction
+            if (Math.abs(enteredFraction - correctFraction) < 0.01) {
+                // Show the correct modal
+                const quizCompletedModal1 = new bootstrap.Modal(document.getElementById('correctModal'));
+                quizCompletedModal1.show();
+            } else {
+                // Show the incorrect modal
+                const quizCompletedModal2 = new bootstrap.Modal(document.getElementById('incorrectModal'));
+                quizCompletedModal2.show();
+            }
+        }
+
+        // Add an event listener to the form for form submission
+        const form = document.getElementById('pearliteForm');
+        form.addEventListener('submit', handleFormSubmit);
+
+
+
+
+
         // Initial setup
         handleRangeChange();
     </script>
