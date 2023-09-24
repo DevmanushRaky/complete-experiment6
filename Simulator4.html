@@ -34,7 +34,7 @@
             margin-top: 5px;
             color: #722F37;
         }
-        #submitBtn{
+        #submitBtn,#incrementBtn,#decrementBtn {
             border: none;
             background-color: #722F37;
         }
@@ -91,9 +91,11 @@
                     <img src="s4img/OptionE.png" class="option-img" alt="Option E" data-option="E">
                     <img src="s4img/OptionF.png" class="option-img" alt="Option F" data-option="F">
                 </div>
-                <label for="customRange2" class="form-label">Change value of Threshold and Vol.% of black region</label>
-                <input type="range" class="form-range" min="0" max="5" id="customRange2" value="0">
-
+                <div class="d-flex justify-content-between m-2">
+                    <button type="button" class="btn btn-primary" id="decrementBtn">-</button>
+                    <input type="range" class="form-range" min="0" max="5" id="customRange2" value="0">
+                    <button type="button" class="btn btn-primary" id="incrementBtn">+</button>
+                </div>
                 <!-- Option Details -->
                 <div id="option-details">
                     <!-- Option A details -->
@@ -337,6 +339,9 @@
         form.addEventListener('submit', handleFormSubmit);
 
 
+
+        // code for changing slider button next and previous  
+        
 
 
 
