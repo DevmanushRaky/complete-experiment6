@@ -345,7 +345,33 @@
 
 
         // code for changing slider button next and previous  
-        
+           // Function to handle decrement button click
+           function handleDecrementClick() {
+            const rangeInput = document.getElementById('customRange2');
+            const currentValue = parseFloat(rangeInput.value);
+            if (currentValue > 0) {
+                rangeInput.value = (currentValue - 1).toString();
+                handleRangeChange();
+            }
+        }
+
+        // Function to handle increment button click
+        function handleIncrementClick() {
+            const rangeInput = document.getElementById('customRange2');
+            const currentValue = parseFloat(rangeInput.value);
+            if (currentValue < 6) {
+                rangeInput.value = (currentValue + 1).toString();
+                handleRangeChange();
+            }
+        }
+
+        // Add event listeners to the buttons
+        const decrementBtn = document.getElementById('decrementBtn');
+        const incrementBtn = document.getElementById('incrementBtn');
+        decrementBtn.addEventListener('click', handleDecrementClick);
+        incrementBtn.addEventListener('click', handleIncrementClick);
+
+
 
 
 
